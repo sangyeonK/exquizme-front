@@ -1,0 +1,20 @@
+#precontent {
+  padding-top: 5rem;
+}
+
+#content {
+  text-align: center;
+  .ui.header {
+    margin-top: 4rem;
+    line-height: 2rem;
+    color: grey;
+    margin-bottom: 4rem;
+  }
+  img {
+    margin: auto;
+  }
+}
+
+button {
+  width: 350px;
+}
