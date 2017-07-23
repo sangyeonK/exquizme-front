@@ -1,20 +1,25 @@
-.body {
-  max-width: 100%;
-  width: 100%;
-  position: fixed;
-}
-
-div.menu {
-  min-width: 320px;
+#head {
+  width: 100vw;
   max-width: 800px;
-  margin-right: auto;
-  margin-left: auto;
-  position: relative;
+  position: fixed;
+  top: 0px;
+  white-space: nowrap;
+  z-index: 1;
 }
 
-a.item.logo {
+#logo {
   color: blue;
   font-size: larger;
   font-weight: bold;
   justify-content: center;
+}
+
+#power {
+  justify-content: flex-end;
+}
+
+.ui.vmini.image {
+  margin-right: .3rem;
+  margin-left: .3rem;
+  width: 24px;
 }
