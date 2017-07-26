@@ -1,0 +1,23 @@
+#precontent {
+  padding-top: 5rem;
+}
+
+#content {
+  text-align: center;
+}
+
+div.segment {
+  margin-left: 1vw;
+  margin-right: 1vw;
+}
+
+div.quiz {
+  text-align: left;
+  overflow: hidden;
+  div.checkbox {
+    margin-left: 8px;
+    label {
+      white-space: nowrap;
+    }
+  }
+}

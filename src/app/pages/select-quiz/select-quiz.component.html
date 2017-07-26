@@ -1,0 +1,12 @@
+<app-top-menu></app-top-menu>
+<div id="precontent"></div>
+<div id="content">
+  <div class="ui raised segment quiz" *ngFor="let quiz of quizzes">
+    <div class="ui checkbox">
+      <input type="checkbox" name="example">
+      <label>
+          {{ quiz.title }}
+        </label>
+    </div>
+  </div>
+</div>
