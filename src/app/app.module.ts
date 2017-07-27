@@ -6,6 +6,7 @@ import { TopMenuComponent } from './top-menu/top-menu.component';
 import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SelectQuizComponent } from './pages/select-quiz/select-quiz.component';
+import { MiniconComponent } from './minicon/minicon.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { SelectQuizComponent } from './pages/select-quiz/select-quiz.component';
     TopMenuComponent,
     MainComponent,
     LoginComponent,
-    SelectQuizComponent
+    SelectQuizComponent,
+    MiniconComponent
   ],
   imports: [
     BrowserModule

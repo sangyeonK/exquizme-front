@@ -1,0 +1,18 @@
+#minicon {
+  top: 100px;
+  position: fixed;
+  right: 10px;
+  white-space: nowrap;
+  width: 200px;
+  z-index: 2;
+  background-color: gainsboro;
+  text-align: center;
+  border-style: double;
+  border-color: black;
+  button {
+    text-align: center;
+    width: 150px;
+    padding: 5px;
+    margin: 2px;
+  }
+}
