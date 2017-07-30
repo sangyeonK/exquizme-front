@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { TopMenuComponent } from './top-menu/top-menu.component';
+import { TopMenuComponent } from './parts/top-menu/top-menu.component';
 import { MainComponent } from './pages/main/main.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SelectQuizComponent } from './pages/select-quiz/select-quiz.component';
-import { MiniconComponent } from './minicon/minicon.component';
+import { MiniconComponent } from './parts/minicon/minicon.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
