@@ -6,4 +6,7 @@
   <button class="ui black button" [routerLink]="['/login']">로그인 페이지</button>
   <br/>
   <button class="ui black button" [routerLink]="['/select_quiz']">퀴즈선택 페이지</button>
+  <br/>
+  <button class="ui black button" (click)="modalAddQuiz()">퀴즈 생성 팝업 띄우기</button>
+  <popup-add-quiz></popup-add-quiz>
 </div>

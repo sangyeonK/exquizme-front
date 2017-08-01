@@ -1,0 +1,38 @@
+#popup-add-quiz {
+  //min-height: 500px;
+  text-align: center;
+  #popup-text {
+    position: relative;
+    height: 24px;
+    font-family: "NotoSansCJKkr";
+    font-size: 16px;
+    font-weight: bold;
+    top: 8px;
+    margin-left: 8px;
+    color: #dedede;
+    text-align: left;
+  }
+  div.field {
+    text-align: center;
+    #write-quiz {
+      margin-top: 19px;
+      width: 95%;
+      height: 200px;
+    }
+    #choose-type {
+      width: 95%;
+      margin-top: 11px;
+      display: inline-block;
+    }
+    #write-answer {
+      width: 95%;
+      margin-top: 11px;
+      height: 200px;
+    }
+  }
+  button {
+    margin-top: 42px;
+    margin-bottom: 51px;
+    width: 82px;
+  }
+}

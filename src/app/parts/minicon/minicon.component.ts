@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AddQuizComponent } from '../../popups/add-quiz/add-quiz.component'
 
 @Component({
   selector: 'app-minicon',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MiniconComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild(AddQuizComponent) addQuizComponent: AddQuizComponent;
+  constructor() { 
+
+  }
 
   ngOnInit() {
+
+  }
+
+  modalAddQuiz() {
+
+    this.addQuizComponent.open("팝업 텍스트 띄우기");
   }
 
 }
