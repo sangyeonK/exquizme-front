@@ -1,6 +1,11 @@
 <app-top-menu></app-top-menu>
 <div id="precontent"></div>
 <div id="content">
+  <div class="no-quiz" *ngIf="quizzes?.length == 0">
+    <p>
+      아직 생성된 문제가 없어요!<br/> 친구들과 나누고 싶은 문제를<br/> 만들어보세요 :-)
+    </p>
+  </div>
   <div class="ui raised segment quiz" *ngFor="let quiz of quizzes; let i = index">
     <div class="ui checkbox">
       <input type="checkbox" name="example">
@@ -10,5 +15,15 @@
 
     </div>
     <a class="btn-quiz-detail" (click)="quizDetail($event, i)"><img class="ui image" src="/assets/quiz-detail.svg"></a>
+  </div>
+</div>
+<div id="bottom_button">
+  <div>
+    <button (click)="delQuiz()" class="circular ui icon button">
+      <i class="icon del-quiz"></i>
+    </button>
+    <button (click)="addQuiz()" class="circular ui icon button">
+      <i class="icon add-quiz"></i>
+    </button>
   </div>
 </div>

@@ -1,3 +1,5 @@
+$aqua-marine: #1de9b6;
+
 #head {
   width: 100vw;
   height: 48px;
@@ -16,7 +18,7 @@
   font-size: 16px;
   font-weight: 900;
   font-family: 'NotoSansCJKkr';
-  color: #45aba6;
+  color: $aqua-marine;
   justify-content: center;
   margin-top: auto;
   margin-bottom: auto;

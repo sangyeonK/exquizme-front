@@ -1,19 +1,71 @@
-div.segment {
-  margin-left: 1vw;
-  margin-right: 1vw;
-}
-
-div.quiz {
-  text-align: left;
-  overflow: hidden;
-  div.checkbox {
-    margin-left: 8px;
-    label {
-      white-space: nowrap;
+$aqua-marine: #1de9b6;
+$aqua: #1dc5e9;
+#content {
+  div.no-quiz {
+    background-image: url("/assets/makequize_background.svg");
+    background-repeat: no-repeat;
+    background-size: 360px 180px;
+    background-position: center 110px;
+    p {
+      padding-top: 300px;
+      font-family: "SpoqaHanSans";
+      font-size: 16px;
+      color: #6d6d6d;
     }
   }
-  a.btn-quiz-detail {
-    width: 20px;
+  div.segment {
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  }
+  div.quiz {
+    text-align: left;
+    overflow: hidden;
+    div.checkbox {
+      margin-left: 8px;
+      label {
+        &::after {
+          color: #1ddbc9;
+        }
+        white-space: nowrap;
+      }
+    }
+    a.btn-quiz-detail {
+      width: 20px;
+      float: right;
+    }
+  }
+}
+
+#bottom_button {
+  width: 100vw;
+  height: 48px;
+  max-width: 750px;
+  bottom: 10px;
+  position: fixed;
+  div {
+    position: relative;
     float: right;
+    right: 20px;
+    bottom: 30px;
+    button {
+      margin-left: 20px;
+      width: 55px;
+      height: 55px;
+      background-image: linear-gradient(225deg, $aqua-marine, $aqua);
+      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+      i {
+        width: 30px;
+        height: 30px;
+        &.add-quiz {
+          background-image: url("/assets/icon_pencil.svg");
+        }
+        &.del-quiz {}
+      }
+    }
   }
 }
