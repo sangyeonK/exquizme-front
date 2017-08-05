@@ -1,20 +1,20 @@
-#precontent {
-  padding-top: 5rem;
-}
-
 #content {
-  text-align: center;
-  .ui.header {
-    margin-top: 4rem;
-    line-height: 2rem;
-    color: grey;
-    margin-bottom: 4rem;
+  p#text1 {
+    margin-top: 72px;
+    margin-bottom: 100px;
+    font-family: "SpoqaHanSans";
+    font-size: 16px;
+    text-align: center;
+    color: #1c2b58;
   }
   img {
     margin: auto;
   }
-}
-
-button {
-  width: 350px;
+  button.facebook {
+    margin-top: -12px;
+    width: 321px;
+    height: 48px;
+    border-radius: 59px;
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+  }
 }
