@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SelectQuizComponent } from './pages/select-quiz/select-quiz.component';
 import { MiniconComponent } from './parts/minicon/minicon.component';
 import { AddQuizComponent } from './popups/add-quiz/add-quiz.component';
+import { DelQuizComponent } from './popups/del-quiz/del-quiz.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,7 +26,8 @@ const routes: Routes = [
     LoginComponent,
     SelectQuizComponent,
     MiniconComponent,
-    AddQuizComponent
+    AddQuizComponent,
+    DelQuizComponent
   ],
   imports: [
     BrowserModule,
