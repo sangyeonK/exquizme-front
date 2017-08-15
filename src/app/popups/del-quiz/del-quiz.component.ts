@@ -1,6 +1,7 @@
 /// <reference types="jquery"/>
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Quiz } from "../../pages/select-quiz/model";
+import { UtilService } from '../../services/util.service';
+import { Quiz } from "../../models/model";
 
 interface JQueryX extends JQuery {
   modal(command: object);
@@ -13,26 +14,26 @@ interface JQueryX extends JQuery {
 })
 export class DelQuizComponent implements OnInit {
 
-  selectedQuizzes: Quiz[];
+  id: string;
 
   @Output() ok: EventEmitter<object>;
-  constructor() {
+
+  constructor(private util: UtilService) {
     this.ok = new EventEmitter<object>();
   }
 
   ngOnInit() {
+    this.id = `popup-del-quiz_${this.util.randomString(5)}`;
   }
 
   open(quizzes: Quiz[]) {
-    this.selectedQuizzes = quizzes.filter((elem) => elem.checked);
-
-    (<JQueryX>$("#popup-del-quiz")).modal({
+    (<JQueryX>$(`#${this.id}`)).modal({
       onApprove: () => this.delQuiz()
     }).modal("show");
 
   }
 
   delQuiz() {
-
+    this.ok.emit();
   }
 }

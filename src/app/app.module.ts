@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { UtilService } from './services/util.service';
+
 import { AppComponent } from './app.component';
 import { TopMenuComponent } from './parts/top-menu/top-menu.component';
 import { MainComponent } from './pages/main/main.component';
@@ -35,7 +37,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [UtilService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

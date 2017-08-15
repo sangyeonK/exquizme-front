@@ -1,5 +1,5 @@
 $purpleish-pink: #e53da3;
-#popup-del-quiz {
+div {
   //min-height: 500px;
   text-align: center;
   #popup-text {
@@ -21,9 +21,12 @@ $purpleish-pink: #e53da3;
     color: #9e9e9e;
   }
   #actions {
+    text-align: center;
+    background-color: white;
+    border-top: 0;
     button {
       margin-top: 42px;
-      margin-bottom: 51px;
+      margin-bottom: 0px;
       width: 145px;
       height: 48px;
       border-radius: 5px;
@@ -38,7 +41,7 @@ $purpleish-pink: #e53da3;
         background-image: linear-gradient(252deg, #e53d59, $purpleish-pink);
         box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
       }
-      &.close {
+      &.cancel {
         color: #aaaeb3;
         border: solid 1px #c6cacf;
       }

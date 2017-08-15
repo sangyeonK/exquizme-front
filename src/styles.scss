@@ -18,8 +18,17 @@ body {
   padding-top: 4rem;
 }
 
+#postcontent {
+  padding-bottom: 8px;
+}
+
 #content {
   text-align: center;
+}
+
+button {
+  outline: 0;
+  border: none;
 }
 
 button.ui.greeny-blue.button {

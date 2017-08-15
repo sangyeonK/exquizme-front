@@ -1,23 +1,23 @@
-<div id="popup-add-quiz" class="ui modal">
+<div id="{{id}}" class="ui modal">
   <i class="close icon"></i>
   <div class="ui form">
     <div id="popup-text">
       <p>퀴즈 생성</p>
     </div>
     <div id="quiz-type">
-      <button class="ui button" [ngClass]="quizType == 0 ? 'choice-quiz' : 'not-selected'" (click)="quizType=0">객관식</button>
-      <button class="ui button" [ngClass]="quizType == 1 ? 'sentence-quiz' : 'not-selected'" (click)="quizType=1">주관식</button>
+      <button class="ui button" [ngClass]="quizType == eQuizType.CHOICE_QUIZ ? 'choice-quiz' : 'not-selected'" (click)="quizType=eQuizType.CHOICE_QUIZ">객관식</button>
+      <button class="ui button" [ngClass]="quizType == eQuizType.SENTENCE_QUIZ ? 'sentence-quiz' : 'not-selected'" (click)="quizType=eQuizType.SENTENCE_QUIZ">주관식</button>
     </div>
-    <div *ngIf="quizType == 0" id="choice-quiz-field" class="field">
-      <textarea class="write-quiz" placeholder="문제를 입력해주세요."></textarea>
-      <input type="text" class="write-answer" placeholder="답을 입력해주세요.">
-      <input type="text" class="write-answer" placeholder="답을 입력해주세요.">
-      <input type="text" class="write-answer" placeholder="답을 입력해주세요.">
-      <input type="text" class="write-answer" placeholder="답을 입력해주세요.">
+    <div *ngIf="quizType == eQuizType.CHOICE_QUIZ" id="choice-quiz-field" class="field">
+      <textarea #choiceQuizTitle class="write-quiz" placeholder="문제를 입력해주세요."></textarea>
+      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="답을 입력해주세요.">
+      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="답을 입력해주세요.">
+      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="답을 입력해주세요.">
+      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="답을 입력해주세요.">
     </div>
-    <div *ngIf="quizType == 1" id="sentence-quiz-field" class="field">
-      <textarea class="write-quiz" placeholder="문제를 입력해주세요."></textarea>
-      <textarea class="write-answer" placeholder="답을 입력해주세요."></textarea>
+    <div *ngIf="quizType == eQuizType.SENTENCE_QUIZ" id="sentence-quiz-field" class="field">
+      <textarea #sentenceQuizTitle class="write-quiz" placeholder="문제를 입력해주세요."></textarea>
+      <textarea #sentenceQuizAnswer class="write-answer" placeholder="답을 입력해주세요."></textarea>
     </div>
   </div>
   <div id="actions" class="actions">

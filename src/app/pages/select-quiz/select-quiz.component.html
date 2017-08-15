@@ -2,7 +2,7 @@
 <div id="precontent"></div>
 <div id="content">
   <div id="checkedQuizPanel" *ngIf="countOfCheckedQuiz != 0" [@quizCheckPanelAnimation]>
-    <button class="" (click)="modalDelQuiz(quizzes)">삭제하기</button>
+    <button class="" (click)="modalDelQuiz()">삭제하기</button>
     <button class="" (click)="shareCheckedQuiz()">공유하기</button>
   </div>
   <div class="no-quiz" *ngIf="quizzes?.length == 0">
@@ -21,6 +21,7 @@
     <a class="btn-quiz-detail" (click)="quizDetail($event, i)"><img class="ui image" src="/assets/quiz-detail.svg"></a>
   </div>
 </div>
+<div id="postcontent"></div>
 <div id="bottom_button">
   <div>
     <button (click)="delQuiz()" class="circular ui icon button">
@@ -32,4 +33,4 @@
   </div>
 </div>
 <popup-add-quiz (ok)="addQuiz($event)"></popup-add-quiz>
-<popup-del-quiz (ok)="delQuiz($event)"></popup-del-quiz>
+<popup-del-quiz (ok)="delQuiz()"></popup-del-quiz>

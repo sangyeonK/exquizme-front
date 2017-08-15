@@ -1,7 +1,7 @@
 $aqua: #1dc5e9;
 $aqua-marine: #1de9b6;
 $purpleish-pink: #e53da3;
-#popup-add-quiz {
+div {
   //min-height: 500px;
   text-align: center;
   #popup-text {
@@ -67,6 +67,7 @@ $purpleish-pink: #e53da3;
   }
   #actions {
     text-align: center;
+    background-color: white;
     border-top: 0;
   }
 }
