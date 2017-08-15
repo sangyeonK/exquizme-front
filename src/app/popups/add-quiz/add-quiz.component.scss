@@ -1,3 +1,6 @@
+$aqua: #1dc5e9;
+$aqua-marine: #1de9b6;
+$purpleish-pink: #e53da3;
 #popup-add-quiz {
   //min-height: 500px;
   text-align: center;
@@ -12,27 +15,58 @@
     color: #dedede;
     text-align: left;
   }
-  div.field {
-    text-align: center;
-    #write-quiz {
-      margin-top: 19px;
-      width: 95%;
-      height: 200px;
-    }
-    #choose-type {
-      width: 95%;
-      margin-top: 11px;
-      display: inline-block;
-    }
-    #write-answer {
-      width: 95%;
-      margin-top: 11px;
-      height: 200px;
+  #quiz-type {
+    button {
+      width: 173px;
+      height: 48px;
+      border-radius: 5px;
+      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+      margin-left: -0.1em;
+      margin-right: -0.1em;
+      margin-top: 8px;
+      &.choice-quiz {
+        background-image: linear-gradient(254deg, $aqua-marine, $aqua);
+        color: #ffffff;
+      }
+      &.sentence-quiz {
+        background-image: linear-gradient(254deg, #e53d59, $purpleish-pink);
+        color: #ffffff;
+      }
+      &.not-selected {
+        background-color: white;
+        border: solid 1px #c6cacf;
+        color: #aaaeb3;
+      }
     }
   }
-  button {
-    margin-top: 42px;
-    margin-bottom: 51px;
-    width: 82px;
+  #choice-quiz-field {
+    text-align: center;
+    .write-quiz {
+      margin-top: 16px;
+      width: 95%;
+      height: 140px;
+    }
+    .write-answer {
+      width: 95%;
+      margin-top: 16px;
+      height: 40px;
+    }
+  }
+  #sentence-quiz-field {
+    text-align: center;
+    .write-quiz {
+      margin-top: 16px;
+      width: 95%;
+      height: 140px;
+    }
+    .write-answer {
+      width: 95%;
+      margin-top: 16px;
+      height: 40px;
+    }
+  }
+  #actions {
+    text-align: center;
+    border-top: 0;
   }
 }

@@ -1,6 +1,9 @@
 /// <reference types="jquery"/>
-import { Component, OnInit } from '@angular/core';
+import { Component, Directive, OnInit, ViewChild, ViewChildren, ElementRef, HostListener, Input, Output, EventEmitter } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { Quiz } from './model';
+import { AddQuizComponent } from '../../popups/add-quiz/add-quiz.component'
+import { DelQuizComponent } from '../../popups/del-quiz/del-quiz.component'
 
 interface JQueryX extends JQuery {
   popup(any: any);
@@ -9,16 +12,32 @@ interface JQueryX extends JQuery {
 @Component({
   selector: 'app-select-quiz',
   templateUrl: './select-quiz.component.html',
-  styleUrls: ['./select-quiz.component.scss']
+  styleUrls: ['./select-quiz.component.scss'],
+  animations: [
+    trigger(
+      'quizCheckPanelAnimation', [
+        transition(':enter', [style({
+          "margin-top": '-20px',
+        }), animate('200ms', style({ "margin-top": '0px' }))]),
+        transition(':leave', [style({
+          "margin-top": '0px',
+        }), animate('0ms', style({ "margin-top": '-20px' }))]),
+      ]
+    )
+  ]
 })
 export class SelectQuizComponent implements OnInit {
 
   quizzes: Quiz[];
+  countOfCheckedQuiz: number;
   testCount: number;
   testdata: string[];
-  
+  @ViewChild(AddQuizComponent) addQuizComponent: AddQuizComponent;
+  @ViewChild(DelQuizComponent) delQuizComponent: DelQuizComponent;
+
   constructor() {
     this.quizzes = [];
+    this.countOfCheckedQuiz = this.quizzes.length;
     // TEST DATA
     this.testCount = 0;
     this.testdata = [
@@ -90,27 +109,48 @@ export class SelectQuizComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
 
+  }
+  quizCheck(event: Event, index: number) {
+    console.log(event);
+    console.log(index);
+    //this.quizzes[index].selected = event.target;
+
+  }
   quizDetail(event: Event, index: number) {
 
     let target: Element = event.srcElement;
     if (target) {
       let currentQuiz: Quiz = this.quizzes[index];
       (<JQueryX>$(target.parentElement)).popup({
-        title: `${currentQuiz.title.substr(0,15)}...`,
+        title: `${currentQuiz.title.substr(0, 15)}...`,
         on: "click"
       });
     }
 
   }
 
-  addQuiz() {
-    this.quizzes.push(new Quiz(this.testCount, this.testdata[this.testCount++]));
+  addQuiz(quiz) {
+    this.quizzes.push(new Quiz(this.testCount, quiz.title));
+    this.testCount++;
+  }
+
+  modalAddQuiz() {
+    this.addQuizComponent.open();
+  }
+  modalDelQuiz(quizzes: Quiz[]) {
+    this.delQuizComponent.open(quizzes);
   }
 
   delQuiz() {
     this.testCount = 0;
     this.quizzes = [];
+    this.countOfCheckedQuiz = this.quizzes.length;
+  }
+
+  checkQuiz(checked, quiz: Quiz, index: number) {
+    quiz.checked = checked;
+    checked ? this.countOfCheckedQuiz++ : this.countOfCheckedQuiz--;
   }
 }
+

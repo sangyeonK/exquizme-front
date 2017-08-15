@@ -1,9 +1,10 @@
 /// <reference types="jquery"/>
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 interface JQueryX extends JQuery {
-  modal(command : string);
+  modal(command: any);
 }
+
 @Component({
   selector: 'popup-add-quiz',
   templateUrl: './add-quiz.component.html',
@@ -11,17 +12,25 @@ interface JQueryX extends JQuery {
 })
 export class AddQuizComponent implements OnInit {
 
-  title: String;
-
-  constructor() { }
+  @Output() ok: EventEmitter<object>;
+  quizType: number;
+  constructor() {
+    this.ok = new EventEmitter<object>();
+    this.quizType = 0;
+  }
 
   ngOnInit() {
 
   }
 
-  open(title: String) {
-    this.title = title;
-    (<JQueryX>$("#popup-add-quiz")).modal("show");
-
+  open() {
+    (<JQueryX>$("#popup-add-quiz")).modal({
+      onApprove: () => this.addQuiz()
+    }).modal("show");
   }
+
+  addQuiz() {
+    this.ok.emit({ });
+  }
+
 }

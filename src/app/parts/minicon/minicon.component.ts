@@ -21,11 +21,11 @@ export class MiniconComponent implements OnInit {
   }
 
   modalAddQuiz() {
-    this.addQuizComponent.open("팝업 텍스트 띄우기");
+    this.addQuizComponent.open();
   }
 
   modalDelQuiz() {
-    this.delQuizComponent.open("개별퀴즈 삭제하기");
+    this.delQuizComponent.open(undefined);
   }
 
 }

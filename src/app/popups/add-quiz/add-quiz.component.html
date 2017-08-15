@@ -2,21 +2,25 @@
   <i class="close icon"></i>
   <div class="ui form">
     <div id="popup-text">
-      {{title}}
+      <p>퀴즈 생성</p>
     </div>
-    <div class="field">
-      <textarea id="write-quiz">문제 작성</textarea>
-
-      <select id="choose-type" class="ui dropdown">
-        <option value="">문제타입선택</option>
-        <option value="1">객관식</option>
-        <option value="2">주관식</option>
-        <option value="3">자유형</option>
-      </select>
-
-      <textarea id="write-answer">답안 작성</textarea>
+    <div id="quiz-type">
+      <button class="ui button" [ngClass]="quizType == 0 ? 'choice-quiz' : 'not-selected'" (click)="quizType=0">객관식</button>
+      <button class="ui button" [ngClass]="quizType == 1 ? 'sentence-quiz' : 'not-selected'" (click)="quizType=1">주관식</button>
+    </div>
+    <div *ngIf="quizType == 0" id="choice-quiz-field" class="field">
+      <textarea class="write-quiz" placeholder="문제를 입력해주세요."></textarea>
+      <input type="text" class="write-answer" placeholder="답을 입력해주세요.">
+      <input type="text" class="write-answer" placeholder="답을 입력해주세요.">
+      <input type="text" class="write-answer" placeholder="답을 입력해주세요.">
+      <input type="text" class="write-answer" placeholder="답을 입력해주세요.">
+    </div>
+    <div *ngIf="quizType == 1" id="sentence-quiz-field" class="field">
+      <textarea class="write-quiz" placeholder="문제를 입력해주세요."></textarea>
+      <textarea class="write-answer" placeholder="답을 입력해주세요."></textarea>
     </div>
   </div>
-
-  <button class="ui greeny-blue button">버튼</button>
+  <div id="actions" class="actions">
+    <button class="ui greeny-blue button ok">생성</button>
+  </div>
 </div>

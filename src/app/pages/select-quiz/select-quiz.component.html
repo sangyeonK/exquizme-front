@@ -1,6 +1,10 @@
 <app-top-menu></app-top-menu>
 <div id="precontent"></div>
 <div id="content">
+  <div id="checkedQuizPanel" *ngIf="countOfCheckedQuiz != 0" [@quizCheckPanelAnimation]>
+    <button class="" (click)="modalDelQuiz(quizzes)">삭제하기</button>
+    <button class="" (click)="shareCheckedQuiz()">공유하기</button>
+  </div>
   <div class="no-quiz" *ngIf="quizzes?.length == 0">
     <p>
       아직 생성된 문제가 없어요!<br/> 친구들과 나누고 싶은 문제를<br/> 만들어보세요 :-)
@@ -8,7 +12,7 @@
   </div>
   <div class="ui raised segment quiz" *ngFor="let quiz of quizzes; let i = index">
     <div class="ui checkbox">
-      <input type="checkbox" name="example">
+      <input type="checkbox" name="example" (change)="checkQuiz($event.target.checked, quiz, i)">
       <label>
           {{ quiz.title }}
         </label>
@@ -22,8 +26,10 @@
     <button (click)="delQuiz()" class="circular ui icon button">
       <i class="icon del-quiz"></i>
     </button>
-    <button (click)="addQuiz()" class="circular ui icon button">
+    <button (click)="modalAddQuiz()" class="circular ui icon button">
       <i class="icon add-quiz"></i>
     </button>
   </div>
 </div>
+<popup-add-quiz (ok)="addQuiz($event)"></popup-add-quiz>
+<popup-del-quiz (ok)="delQuiz($event)"></popup-del-quiz>
