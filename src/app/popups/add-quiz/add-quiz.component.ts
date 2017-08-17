@@ -35,12 +35,9 @@ export class AddQuizComponent implements OnInit {
   }
 
   open() {
-    console.log(this.sentenceQuizTitle);
-    this.clear();
     (<JQueryX>$(`#${this.id}`)).modal({
       onApprove: () => this.addQuiz()
     }).modal("show");
-    this.clear();
   }
 
   clear() {

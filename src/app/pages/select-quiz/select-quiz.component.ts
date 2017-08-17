@@ -40,25 +40,10 @@ export class SelectQuizComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.addQuiz("test");
 
   }
+
   quizCheck(event: Event, index: number) {
-    console.log(event);
-    console.log(index);
-    //this.quizzes[index].selected = event.target;
-
-  }
-  quizDetail(event: Event, index: number) {
-
-    let target: Element = event.srcElement;
-    if (target) {
-      let currentQuiz: Quiz = this.quizzes[index];
-      (<JQueryX>$(target.parentElement)).popup({
-        title: `${currentQuiz.title.substr(0, 15)}...`,
-        on: "click"
-      });
-    }
 
   }
 
@@ -66,22 +51,36 @@ export class SelectQuizComponent implements OnInit {
     this.quizzes.push(new Quiz(0, quiz.title));
   }
 
+  delQuiz(event: Event, index: number) {
+    this.quizzes = this.quizzes.filter((quiz: Quiz, index2) => {
+      if (index == index2) {
+        if (quiz.checked)
+          this.countOfCheckedQuiz--;
+        return false;
+      }
+      return true;
+    });
+  }
+
   modalAddQuiz() {
-    console.log("modalAddQuiz");
     this.addQuizComponent.open();
   }
   modalDelQuiz(quizzes: Quiz[]) {
     this.delQuizComponent.open(quizzes);
   }
 
-  delQuiz() {
-    this.quizzes = this.quizzes.filter((quiz: Quiz) => quiz.checked == false);
+  delCheckedQuiz() {
     this.countOfCheckedQuiz = 0;
+    this.quizzes = this.quizzes.filter((quiz: Quiz) => quiz.checked == false);
   }
 
   checkQuiz(checked, quiz: Quiz, index: number) {
     quiz.checked = checked;
     checked ? this.countOfCheckedQuiz++ : this.countOfCheckedQuiz--;
+  }
+
+  toggleBottomButtons() {
+
   }
 }
 

@@ -18,19 +18,27 @@
         </label>
 
     </div>
-    <a class="btn-quiz-detail" (click)="quizDetail($event, i)"><img class="ui image" src="/assets/quiz-detail.svg"></a>
+    <a class="btn-quiz-detail" (click)="delQuiz($event, i)"><img class="ui image" src="/assets/icon_trashcan.svg"></a>
   </div>
 </div>
 <div id="postcontent"></div>
 <div id="bottom_button">
   <div>
+    <!--
     <button (click)="delQuiz()" class="circular ui icon button">
       <i class="icon del-quiz"></i>
     </button>
+  -->
+
+  <!--
     <button (click)="modalAddQuiz()" class="circular ui icon button">
       <i class="icon add-quiz"></i>
     </button>
+  -->
+    <button (click)="toggleBottomButtons()" class="circular ui icon button">
+        <i class="icon toggle"></i>
+      </button>
   </div>
 </div>
 <popup-add-quiz (ok)="addQuiz($event)"></popup-add-quiz>
-<popup-del-quiz (ok)="delQuiz()"></popup-del-quiz>
+<popup-del-quiz (ok)="delCheckedQuiz()"></popup-del-quiz>

@@ -17,8 +17,8 @@ export class AuthService {
     this.pictureURL = undefined;
     this.name = undefined;
 
-    this.event.asObservable().subscribe((aaa) => {
-      console.log(this);
+    this.event.asObservable().subscribe(() => {
+
     });
 
   }
