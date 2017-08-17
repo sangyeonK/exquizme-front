@@ -4,14 +4,19 @@ export enum QuizType {
 
 }
 export class Quiz {
+    checked: Boolean;
+
     id: number;
     title: string;
-    checked: Boolean;
     type: QuizType;
+    correctAnswer: string;
+    answerList:string[];
 
     constructor(id: number, title: string) {
+        this.checked = false;
+
         this.id = id;
         this.title = title;
-        this.checked = false;
+        this.answerList = [];
     }
 }
