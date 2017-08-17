@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoggerModule } from 'ngx-logger';
 
 import { UtilService } from './services/util.service';
 
@@ -35,7 +36,8 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LoggerModule.forRoot({ level: "DEBUG" })
   ],
   providers: [UtilService],
   bootstrap: [AppComponent]
