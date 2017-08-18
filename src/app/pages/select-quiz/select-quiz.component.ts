@@ -23,13 +23,62 @@ interface JQueryX extends JQuery {
           "margin-top": '0px',
         }), animate('0ms', style({ "margin-top": '-20px' }))]),
       ]
-    )
+    ),
+    trigger(
+      'extendBottomButton', [
+        state("inextend", style({
+          transform: 'rotate(0deg)',
+        })),
+        state("extend", style({
+          transform: 'rotate(-90deg)',
+        })),
+        transition('inextend => extend', [animate('200ms ease-in')]),
+        transition('extend => inextend', [animate('200ms ease-out')]),
+      ]
+    ),
+    trigger(
+      'extendBottomButton-addQuiz', [
+        state("inextend", style({
+          bottom:"34px",
+        })),
+        state("extend", style({
+          bottom:"102px",
+        })),
+        transition('inextend => extend', [animate('200ms ease-in')]),
+        transition('extend => inextend', [animate('200ms ease-out')]),
+      ]
+    ),
+    trigger(
+      'extendBottomButton-delQuiz', [
+        state("inextend", style({
+          bottom:"34px",
+        })),
+        state("extend", style({
+          bottom:"166px",
+        })),
+        transition('inextend => extend', [animate('200ms ease-in')]),
+        transition('extend => inextend', [animate('200ms ease-out')]),
+      ]
+    ),
+    trigger(
+      'extendBottomButton-shareQuiz', [
+        state("inextend", style({
+          right:"20px",
+        })),
+        state("extend", style({
+          right:"88px",
+        })),
+        transition('inextend => extend', [animate('200ms ease-in')]),
+        transition('extend => inextend', [animate('200ms ease-out')]),
+      ]
+    ),
   ]
 })
 export class SelectQuizComponent implements OnInit {
 
   quizzes: Quiz[];
   countOfCheckedQuiz: number;
+  extendBottomButton: string = 'inextend';
 
   @ViewChild(AddQuizComponent) addQuizComponent: AddQuizComponent;
   @ViewChild(DelQuizComponent) delQuizComponent: DelQuizComponent;
@@ -80,7 +129,7 @@ export class SelectQuizComponent implements OnInit {
   }
 
   toggleBottomButtons() {
-
+    this.extendBottomButton = (this.extendBottomButton === 'inextend' ? 'extend' : 'inextend');
   }
 }
 

@@ -48,23 +48,41 @@ $aqua: #1dc5e9;
   bottom: 10px;
   position: fixed;
   div {
-    position: relative;
     float: right;
-    right: 20px;
-    bottom: 30px;
     button {
-      margin-left: 20px;
-      width: 55px;
-      height: 55px;
-      background-image: linear-gradient(225deg, $aqua-marine, $aqua);
-      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+      position: absolute; // margin-left: 20px;
+      width: 47px;
+      height: 47px;
+      right: 20px;
+      bottom: 34px;
+      background-image: linear-gradient(225deg, $aqua-marine, $aqua); //box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
       i {
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         &.add-quiz {
           background-image: url("/assets/icon_pencil.svg");
         }
-        &.del-quiz {}
+        &.del-quiz {
+          background-image: url("/assets/icon_pencil.svg");
+        }
+        &.share-quiz {
+          background-image: url("/assets/icon_pencil.svg");
+        }
+        &.toggle {
+          background-image: url("/assets/icon_pencil.svg");
+        }
+      }
+      &.toggle {
+        width: 55px;
+        height: 55px;
+        right: 16px;
+        bottom:30px;
+        
+        z-index: 2;
+        i {
+          width: 30px;
+          height: 30px;
+        }
       }
     }
   }
