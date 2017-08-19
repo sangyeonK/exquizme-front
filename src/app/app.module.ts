@@ -14,6 +14,8 @@ import { SelectQuizComponent } from './pages/select-quiz/select-quiz.component';
 import { MiniconComponent } from './parts/minicon/minicon.component';
 import { AddQuizComponent } from './popups/add-quiz/add-quiz.component';
 import { DelQuizComponent } from './popups/del-quiz/del-quiz.component';
+import { ShareQuizComponent } from './popups/share-quiz/share-quiz.component';
+import { TagQuiztypeComponent } from './parts/tag-quiztype/tag-quiztype.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -31,7 +33,9 @@ const routes: Routes = [
     SelectQuizComponent,
     MiniconComponent,
     AddQuizComponent,
-    DelQuizComponent
+    DelQuizComponent,
+    ShareQuizComponent,
+    TagQuiztypeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,12 @@
 /// <reference types="jquery"/>
 import { Component, Directive, OnInit, ViewChild, ViewChildren, ElementRef, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { NGXLogger } from 'ngx-logger';
+
 import { Quiz } from '../../models/model';
 import { AddQuizComponent } from '../../popups/add-quiz/add-quiz.component'
 import { DelQuizComponent } from '../../popups/del-quiz/del-quiz.component'
+import { ShareQuizComponent } from '../../popups/share-quiz/share-quiz.component'
 
 interface JQueryX extends JQuery {
   popup(any: any);
@@ -39,10 +42,10 @@ interface JQueryX extends JQuery {
     trigger(
       'extendBottomButton-addQuiz', [
         state("inextend", style({
-          bottom:"34px",
+          bottom: "34px",
         })),
         state("extend", style({
-          bottom:"102px",
+          bottom: "102px",
         })),
         transition('inextend => extend', [animate('200ms ease-in')]),
         transition('extend => inextend', [animate('200ms ease-out')]),
@@ -51,10 +54,10 @@ interface JQueryX extends JQuery {
     trigger(
       'extendBottomButton-delQuiz', [
         state("inextend", style({
-          bottom:"34px",
+          bottom: "34px",
         })),
         state("extend", style({
-          bottom:"166px",
+          bottom: "166px",
         })),
         transition('inextend => extend', [animate('200ms ease-in')]),
         transition('extend => inextend', [animate('200ms ease-out')]),
@@ -63,10 +66,10 @@ interface JQueryX extends JQuery {
     trigger(
       'extendBottomButton-shareQuiz', [
         state("inextend", style({
-          right:"20px",
+          right: "20px",
         })),
         state("extend", style({
-          right:"88px",
+          right: "88px",
         })),
         transition('inextend => extend', [animate('200ms ease-in')]),
         transition('extend => inextend', [animate('200ms ease-out')]),
@@ -82,8 +85,9 @@ export class SelectQuizComponent implements OnInit {
 
   @ViewChild(AddQuizComponent) addQuizComponent: AddQuizComponent;
   @ViewChild(DelQuizComponent) delQuizComponent: DelQuizComponent;
+  @ViewChild(ShareQuizComponent) shareQuizComponent: ShareQuizComponent;
 
-  constructor() {
+  constructor(private logger: NGXLogger) {
     this.quizzes = [];
     this.countOfCheckedQuiz = this.quizzes.length;
   }
@@ -97,7 +101,7 @@ export class SelectQuizComponent implements OnInit {
   }
 
   addQuiz(quiz) {
-    this.quizzes.push(new Quiz(0, quiz.title));
+    this.quizzes.push(quiz);  
   }
 
   delQuiz(event: Event, index: number) {
@@ -110,12 +114,19 @@ export class SelectQuizComponent implements OnInit {
       return true;
     });
   }
+  shareQuiz(title: string) {
+    this.logger.debug(`퀴즈 공유하기 ${title}`);
+
+  }
 
   modalAddQuiz() {
     this.addQuizComponent.open();
   }
-  modalDelQuiz(quizzes: Quiz[]) {
-    this.delQuizComponent.open(quizzes);
+  modalDelQuiz() {
+    this.delQuizComponent.open();
+  }
+  modalShareQuiz() {
+    this.shareQuizComponent.open(this.quizzes.filter((quiz: Quiz) => quiz.checked));
   }
 
   delCheckedQuiz() {

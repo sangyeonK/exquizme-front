@@ -1,4 +1,4 @@
-<app-top-menu></app-top-menu>
+<top-menu></top-menu>
 <div id="precontent"></div>
 <div id="content">
   <!--
@@ -21,6 +21,7 @@
 
     </div>
     <a class="btn-quiz-detail" (click)="delQuiz($event, i)"><img class="ui image" src="/assets/icon_trashcan.svg"></a>
+    <tag-quiztype [quiz-type]="quiz.type"></tag-quiztype>
   </div>
 </div>
 <div id="postcontent"></div>
@@ -35,10 +36,11 @@
     <button [@extendBottomButton-delQuiz]="extendBottomButton" (click)="modalDelQuiz()" class="circular ui icon button">
         <i class="icon del-quiz"></i>
       </button>
-    <button [@extendBottomButton-shareQuiz]="extendBottomButton" class="circular ui icon button">
+    <button *ngIf="countOfCheckedQuiz != 0" [@extendBottomButton-shareQuiz]="extendBottomButton" (click)="modalShareQuiz()" class="circular ui icon button">
         <i class="icon share-quiz"></i>
       </button>
   </div>
 </div>
 <popup-add-quiz (ok)="addQuiz($event)"></popup-add-quiz>
 <popup-del-quiz (ok)="delCheckedQuiz()"></popup-del-quiz>
+<popup-share-quiz (ok)="shareQuiz($event)"></popup-share-quiz>

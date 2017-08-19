@@ -1,5 +1,5 @@
 /// <reference types="jquery"/>
-import { Component, OnInit, Input, Output, ViewChild, ViewChildren, EventEmitter, ElementRef, QueryList } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, ViewChildren, EventEmitter, ElementRef, QueryList, ChangeDetectorRef } from '@angular/core';
 import { UtilService } from '../../services/util.service';
 import { Quiz, QuizType } from '../../models/model';
 
@@ -25,7 +25,7 @@ export class AddQuizComponent implements OnInit {
 
   @Output() ok: EventEmitter<object>;
 
-  constructor(private util: UtilService) {
+  constructor(private util: UtilService, private chRef:ChangeDetectorRef) {
     this.ok = new EventEmitter<object>();
     this.quizType = QuizType.CHOICE_QUIZ;
   }
@@ -35,6 +35,10 @@ export class AddQuizComponent implements OnInit {
   }
 
   open() {
+    this.clear();
+    this.quizType = QuizType.CHOICE_QUIZ;
+    this.chRef.detectChanges();
+
     (<JQueryX>$(`#${this.id}`)).modal({
       onApprove: () => this.addQuiz()
     }).modal("show");
@@ -47,9 +51,8 @@ export class AddQuizComponent implements OnInit {
     });
     (this.sentenceQuizTitle.nativeElement as HTMLTextAreaElement).value = "";
     (this.sentenceQuizAnswer.nativeElement as HTMLTextAreaElement).value = "";
-
-
   }
+
   addQuiz() {
     if (this.quizType == QuizType.CHOICE_QUIZ) {
       const elQuizTitle = this.choiceQuizTitle.nativeElement as HTMLTextAreaElement;

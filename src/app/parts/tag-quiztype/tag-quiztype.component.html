@@ -1,0 +1,5 @@
+<div [ngClass]="quizType === eQuizType.CHOICE_QUIZ ?  'choice_quiz' : 'sentence_quiz' ">
+  <div>
+    <p>{{ quizType === eQuizType.CHOICE_QUIZ ? '객관식' : '주관식' }}</p>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div id="{{id}}" class="ui modal">
+  <i class="close icon"></i>
+  <div class="ui form">
+    <div id="popup-text">
+      <p>공유할 퀴즈정보 입력하기</p>
+    </div>
+    <div id="share-quiz-field" class="field">
+      <input #title type="text" class="write-title" placeholder="퀴즈의 제목을 입력해주세요">
+      <div class="ui raised segment" *ngFor="let quiz of quizzes;">
+        <label>{{ quiz.title }}</label>
+        <tag-quiztype [quiz-type]="quiz.type"></tag-quiztype>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="actions" class="actions">
+    <button class="ui greeny-blue button ok">퀴즈만들기</button>
+  </div>
+</div>

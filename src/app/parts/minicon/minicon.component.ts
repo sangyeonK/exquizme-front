@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AddQuizComponent } from '../../popups/add-quiz/add-quiz.component'
 import { DelQuizComponent } from '../../popups/del-quiz/del-quiz.component'
+import { ShareQuizComponent } from '../../popups/share-quiz/share-quiz.component'
 
 @Component({
   selector: 'app-minicon',
@@ -11,6 +12,7 @@ export class MiniconComponent implements OnInit {
 
   @ViewChild(AddQuizComponent) addQuizComponent: AddQuizComponent;
   @ViewChild(DelQuizComponent) delQuizComponent: DelQuizComponent;
+  @ViewChild(ShareQuizComponent) shareQuizComponent: ShareQuizComponent;
  
   constructor() { 
 
@@ -25,7 +27,11 @@ export class MiniconComponent implements OnInit {
   }
 
   modalDelQuiz() {
-    this.delQuizComponent.open(undefined);
+    this.delQuizComponent.open();
+  }
+
+  modalShareQuiz() {
+    this.shareQuizComponent.open(undefined);
   }
 
 }
