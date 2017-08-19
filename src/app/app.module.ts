@@ -16,6 +16,7 @@ import { AddQuizComponent } from './popups/add-quiz/add-quiz.component';
 import { DelQuizComponent } from './popups/del-quiz/del-quiz.component';
 import { ShareQuizComponent } from './popups/share-quiz/share-quiz.component';
 import { TagQuiztypeComponent } from './parts/tag-quiztype/tag-quiztype.component';
+import { ShareQuizCompleteComponent } from './popups/share-quiz-complete/share-quiz-complete.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -35,7 +36,8 @@ const routes: Routes = [
     AddQuizComponent,
     DelQuizComponent,
     ShareQuizComponent,
-    TagQuiztypeComponent
+    TagQuiztypeComponent,
+    ShareQuizCompleteComponent
   ],
   imports: [
     BrowserModule,

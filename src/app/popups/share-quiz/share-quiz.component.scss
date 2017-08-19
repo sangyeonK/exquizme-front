@@ -15,30 +15,6 @@ div {
     color: #dedede;
     text-align: left;
   }
-  #quiz-type {
-    button {
-      width: 173px;
-      height: 48px;
-      border-radius: 5px;
-      box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
-      margin-left: -0.1em;
-      margin-right: -0.1em;
-      margin-top: 8px;
-      &.choice-quiz {
-        background-image: linear-gradient(254deg, $aqua-marine, $aqua);
-        color: #ffffff;
-      }
-      &.sentence-quiz {
-        background-image: linear-gradient(254deg, #e53d59, $purpleish-pink);
-        color: #ffffff;
-      }
-      &.not-selected {
-        background-color: white;
-        border: solid 1px #c6cacf;
-        color: #aaaeb3;
-      }
-    }
-  }
   #share-quiz-field {
     text-align: center;
     .write-title {

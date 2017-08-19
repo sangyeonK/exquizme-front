@@ -101,7 +101,7 @@ export class SelectQuizComponent implements OnInit {
   }
 
   addQuiz(quiz) {
-    this.quizzes.push(quiz);  
+    this.quizzes.push(quiz);
   }
 
   delQuiz(event: Event, index: number) {
@@ -115,7 +115,6 @@ export class SelectQuizComponent implements OnInit {
     });
   }
   shareQuiz(title: string) {
-    this.logger.debug(`퀴즈 공유하기 ${title}`);
 
   }
 

@@ -3,7 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { UtilService } from '../../services/util.service';
 
 interface JQueryX extends JQuery {
-  modal(command: object);
+  modal(command: any);
 }
 
 @Component({

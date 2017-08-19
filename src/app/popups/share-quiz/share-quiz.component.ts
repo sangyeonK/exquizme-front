@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { UtilService } from '../../services/util.service';
 import { Quiz } from "../../models/model";
+import { ShareQuizCompleteComponent } from "../share-quiz-complete/share-quiz-complete.component";
 
 interface JQueryX extends JQuery {
   modal(command: any);
@@ -16,12 +17,10 @@ export class ShareQuizComponent implements OnInit {
   id: string;
 
   @ViewChild("title") title: ElementRef;
-
-  @Output() ok: EventEmitter<string>;
+  @ViewChild(ShareQuizCompleteComponent) shareQuizCompleteComponent: ShareQuizCompleteComponent;
 
   constructor(private util: UtilService) {
     this.quizzes = [];
-    this.ok = new EventEmitter<string>();
   }
 
   ngOnInit() {
@@ -29,7 +28,7 @@ export class ShareQuizComponent implements OnInit {
   }
 
   open(quizzes: Quiz[]) {
-    if(!quizzes || quizzes.length == 0)
+    if (!quizzes || quizzes.length == 0)
       return;
 
     this.quizzes = quizzes;
@@ -42,6 +41,6 @@ export class ShareQuizComponent implements OnInit {
 
   shareQuiz() {
     const title = this.title.nativeElement as HTMLInputElement;
-    this.ok.emit(title.value);
+    this.shareQuizCompleteComponent.open(title.value);
   }
 }

@@ -14,7 +14,7 @@ export class TagQuiztypeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.quizType);
+
   }
 
 }
