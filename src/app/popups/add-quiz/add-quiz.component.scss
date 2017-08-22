@@ -17,7 +17,7 @@ div {
   }
   #quiz-type {
     button {
-      width: 173px;
+      width: 160px;
       height: 48px;
       border-radius: 5px;
       box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
@@ -50,6 +50,11 @@ div {
       width: 95%;
       margin-top: 16px;
       height: 40px;
+      &.correct {
+        border-image-source: linear-gradient(256deg, $aqua-marine, $aqua);
+        border-image-slice: 1;
+        border-width: 2px;
+      }
     }
   }
   #sentence-quiz-field {
@@ -63,6 +68,11 @@ div {
       width: 95%;
       margin-top: 16px;
       height: 40px;
+      &.correct {
+        border-image-source: linear-gradient(256deg, $aqua-marine, $aqua);
+        border-image-slice: 1;
+        border-width: 2px;
+      }
     }
   }
   #actions {

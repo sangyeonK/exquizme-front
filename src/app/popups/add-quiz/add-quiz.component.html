@@ -10,14 +10,14 @@
     </div>
     <div [hidden]="quizType != eQuizType.CHOICE_QUIZ" id="choice-quiz-field" class="field">
       <textarea #choiceQuizTitle class="write-quiz" placeholder="문제를 입력해주세요."></textarea>
-      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="답을 입력해주세요.">
-      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="답을 입력해주세요.">
-      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="답을 입력해주세요.">
-      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="답을 입력해주세요.">
+      <input #choiceQuizAnswer type="text" class="write-answer correct" placeholder="정답을 입력해주세요.">
+      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="보기를 입력해주세요.">
+      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="보기를 입력해주세요.">
+      <input #choiceQuizAnswer type="text" class="write-answer" placeholder="보기를 입력해주세요.">
     </div>
     <div [hidden]="quizType != eQuizType.SENTENCE_QUIZ" id="sentence-quiz-field" class="field">
       <textarea #sentenceQuizTitle class="write-quiz" placeholder="문제를 입력해주세요."></textarea>
-      <textarea #sentenceQuizAnswer class="write-answer" placeholder="답을 입력해주세요."></textarea>
+      <textarea #sentenceQuizAnswer class="write-answer correct" placeholder="정답을 입력해주세요."></textarea>
     </div>
   </div>
   <div id="actions" class="actions">

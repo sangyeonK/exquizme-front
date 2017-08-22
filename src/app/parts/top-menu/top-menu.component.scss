@@ -1,5 +1,4 @@
 $aqua-marine: #1de9b6;
-
 #head {
   width: 100vw;
   height: 48px;
@@ -10,22 +9,23 @@ $aqua-marine: #1de9b6;
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.5);
   text-align: center;
   z-index: 1;
-}
-
-#logo {
-  width: 64px;
-  height: 18px;
-  font-size: 16px;
-  font-weight: 900;
-  font-family: 'NotoSansCJKkr';
-  color: $aqua-marine;
-  justify-content: center;
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-#power {
-  justify-content: flex-end;
+  >#menu {
+    min-height: 48px;
+    >#logo {
+      width: 64px;
+      height: 18px;
+      font-size: 16px;
+      font-weight: 900;
+      font-family: 'NotoSansCJKkr';
+      color: $aqua-marine;
+      justify-content: center;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    >#power {
+      justify-content: flex-end;
+    }
+  }
 }
 
 .ui.vmini.image {

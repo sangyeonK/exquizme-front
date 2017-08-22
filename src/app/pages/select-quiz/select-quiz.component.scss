@@ -13,7 +13,7 @@ $aqua: #1dc5e9;
       color: #6d6d6d;
     }
   }
-  div.segment {
+  div.quiz {
     margin-left: 1vw;
     margin-right: 1vw;
     margin-top: 8px;
@@ -21,8 +21,6 @@ $aqua: #1dc5e9;
     border-radius: 4px;
     background-color: #ffffff;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
-  }
-  div.quiz {
     text-align: left;
     overflow: hidden;
     div.checkbox {
@@ -34,10 +32,47 @@ $aqua: #1dc5e9;
         white-space: nowrap;
       }
     }
-    a.btn-quiz-detail {
+    a.btn-del-quiz {
       width: 20px;
       float: right;
       margin-left: 1rem;
+    }
+    div.choice-answer {
+      .ui.input {
+        display: block;
+        text-align: center;
+        margin-top: 5px;
+        >input {
+          width: 45%;
+          margin-left: 5px;
+          margin-right: 5px;
+          &.correct {
+            border-image-source: linear-gradient(256deg, $aqua-marine, $aqua);
+            border-image-slice: 1;
+            border-width: 2px;
+          }
+        }
+      }
+      .ui.input:first-child {
+        margin-top: 10px
+      }
+    }
+    div.sentence-answer {
+      .ui.input {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        >input {
+          width: 90%;
+          margin-left: 5px;
+          margin-right: 5px;
+          &.correct {
+            border-image-source: linear-gradient(256deg, $aqua-marine, $aqua);
+            border-image-slice: 1;
+            border-width: 2px;
+          }
+        }
+      }
     }
   }
 }

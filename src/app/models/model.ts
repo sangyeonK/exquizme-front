@@ -11,6 +11,7 @@ export class Quiz {
     type: QuizType;
     correctAnswer: string;
     answerList:string[];
+    expandShowAnswer:boolean;
 
     constructor(id: number, title: string) {
         this.checked = false;
@@ -18,5 +19,6 @@ export class Quiz {
         this.id = id;
         this.title = title;
         this.answerList = [];
+        this.expandShowAnswer = false;
     }
 }

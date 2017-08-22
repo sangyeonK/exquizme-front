@@ -3,7 +3,7 @@ import { Component, Directive, OnInit, ViewChild, ViewChildren, ElementRef, Host
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { NGXLogger } from 'ngx-logger';
 
-import { Quiz } from '../../models/model';
+import { Quiz, QuizType } from '../../models/model';
 import { AddQuizComponent } from '../../popups/add-quiz/add-quiz.component'
 import { DelQuizComponent } from '../../popups/del-quiz/del-quiz.component'
 import { ShareQuizComponent } from '../../popups/share-quiz/share-quiz.component'
@@ -28,60 +28,61 @@ interface JQueryX extends JQuery {
       ]
     ),
     trigger(
-      'extendBottomButton', [
-        state("inextend", style({
+      'expandBottomButton', [
+        state("inexpand", style({
           transform: 'rotate(0deg)',
         })),
-        state("extend", style({
+        state("expand", style({
           transform: 'rotate(-90deg)',
         })),
-        transition('inextend => extend', [animate('200ms ease-in')]),
-        transition('extend => inextend', [animate('200ms ease-out')]),
+        transition('inexpand => expand', [animate('200ms ease-in')]),
+        transition('expand => inexpand', [animate('200ms ease-out')]),
       ]
     ),
     trigger(
-      'extendBottomButton-addQuiz', [
-        state("inextend", style({
+      'expandBottomButton-addQuiz', [
+        state("inexpand", style({
           bottom: "34px",
         })),
-        state("extend", style({
+        state("expand", style({
           bottom: "102px",
         })),
-        transition('inextend => extend', [animate('200ms ease-in')]),
-        transition('extend => inextend', [animate('200ms ease-out')]),
+        transition('inexpand => expand', [animate('200ms ease-in')]),
+        transition('expand => inexpand', [animate('200ms ease-out')]),
       ]
     ),
     trigger(
-      'extendBottomButton-delQuiz', [
-        state("inextend", style({
+      'expandBottomButton-delQuiz', [
+        state("inexpand", style({
           bottom: "34px",
         })),
-        state("extend", style({
+        state("expand", style({
           bottom: "166px",
         })),
-        transition('inextend => extend', [animate('200ms ease-in')]),
-        transition('extend => inextend', [animate('200ms ease-out')]),
+        transition('inexpand => expand', [animate('200ms ease-in')]),
+        transition('expand => inexpand', [animate('200ms ease-out')]),
       ]
     ),
     trigger(
-      'extendBottomButton-shareQuiz', [
-        state("inextend", style({
+      'expandBottomButton-shareQuiz', [
+        state("inexpand", style({
           right: "20px",
         })),
-        state("extend", style({
+        state("expand", style({
           right: "88px",
         })),
-        transition('inextend => extend', [animate('200ms ease-in')]),
-        transition('extend => inextend', [animate('200ms ease-out')]),
+        transition('inexpand => expand', [animate('200ms ease-in')]),
+        transition('expand => inexpand', [animate('200ms ease-out')]),
       ]
     ),
   ]
 })
 export class SelectQuizComponent implements OnInit {
+  eQuizType = QuizType;
 
   quizzes: Quiz[];
   countOfCheckedQuiz: number;
-  extendBottomButton: string = 'inextend';
+  expandBottomButton: string = 'inexpand';
 
   @ViewChild(AddQuizComponent) addQuizComponent: AddQuizComponent;
   @ViewChild(DelQuizComponent) delQuizComponent: DelQuizComponent;
@@ -136,10 +137,19 @@ export class SelectQuizComponent implements OnInit {
   checkQuiz(checked, quiz: Quiz, index: number) {
     quiz.checked = checked;
     checked ? this.countOfCheckedQuiz++ : this.countOfCheckedQuiz--;
+
   }
 
   toggleBottomButtons() {
-    this.extendBottomButton = (this.extendBottomButton === 'inextend' ? 'extend' : 'inextend');
+    this.expandBottomButton = (this.expandBottomButton === 'inexpand' ? 'expand' : 'inexpand');
+  }
+
+  expandQuiz(quiz: Quiz) {
+    quiz.expandShowAnswer = !quiz.expandShowAnswer;
+  }
+
+  stopPropagation(event: Event) {
+    event.stopPropagation();
   }
 }
 

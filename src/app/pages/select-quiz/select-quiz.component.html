@@ -13,30 +13,49 @@
     </p>
   </div>
   <div class="ui raised segment quiz" *ngFor="let quiz of quizzes; let i = index">
-    <div class="ui checkbox">
-      <input type="checkbox" name="example" (change)="checkQuiz($event.target.checked, quiz, i)">
-      <label>
+    <div (click)="expandQuiz(quiz)">
+      <div class="ui checkbox">
+        <input type="checkbox" name="example" (change)="checkQuiz($event.target.checked, quiz, i)" (click)="stopPropagation($event)">
+        <label>
           {{ quiz.title }}
         </label>
 
+      </div>
+      <a class="btn-del-quiz" (click)="delQuiz($event, i)"><img class="ui image" src="/assets/icon_trashcan.svg"></a>
+      <tag-quiztype [quiz-type]="quiz.type"></tag-quiztype>
     </div>
-    <a class="btn-quiz-detail" (click)="delQuiz($event, i)"><img class="ui image" src="/assets/icon_trashcan.svg"></a>
-    <tag-quiztype [quiz-type]="quiz.type"></tag-quiztype>
+    <div *ngIf="quiz.expandShowAnswer">
+      <div class="choice-answer" *ngIf="quiz.type == eQuizType.CHOICE_QUIZ">
+        <div class="ui input">
+          <input class="correct" readonly type="text" value="{{quiz.answerList[0]}}">
+          <input readonly type="text" value="{{quiz.answerList[1]}}">
+        </div>
+        <div class="ui input" style="display:block;text-align:center;margin-top:5px">
+          <input readonly type="text" value="{{quiz.answerList[2]}}">
+          <input readonly type="text" value="{{quiz.answerList[3]}}">
+        </div>
+      </div>
+      <div class="sentence-answer" *ngIf="quiz.type == eQuizType.SENTENCE_QUIZ">
+        <div class="ui input">
+          <input class="correct" readonly type="text" value="{{quiz.correctAnswer}}">
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div id="postcontent"></div>
 <div id="bottom_button">
   <div>
-    <button [@extendBottomButton]="extendBottomButton" (click)="toggleBottomButtons()" class="circular ui icon button toggle">
+    <button [@expandBottomButton]="expandBottomButton" (click)="toggleBottomButtons()" class="circular ui icon button toggle">
         <i class="icon toggle"></i>
       </button>
-    <button [@extendBottomButton-addQuiz]="extendBottomButton" (click)="modalAddQuiz()" class="circular ui icon button">
+    <button [@expandBottomButton-addQuiz]="expandBottomButton" (click)="modalAddQuiz()" class="circular ui icon button">
       <i class="icon add-quiz"></i>
       </button>
-    <button [@extendBottomButton-delQuiz]="extendBottomButton" (click)="modalDelQuiz()" class="circular ui icon button">
+    <button [@expandBottomButton-delQuiz]="expandBottomButton" (click)="modalDelQuiz()" class="circular ui icon button">
         <i class="icon del-quiz"></i>
       </button>
-    <button *ngIf="countOfCheckedQuiz != 0" [@extendBottomButton-shareQuiz]="extendBottomButton" (click)="modalShareQuiz()" class="circular ui icon button">
+    <button *ngIf="countOfCheckedQuiz != 0" [@expandBottomButton-shareQuiz]="expandBottomButton" (click)="modalShareQuiz()" class="circular ui icon button">
         <i class="icon share-quiz"></i>
       </button>
   </div>

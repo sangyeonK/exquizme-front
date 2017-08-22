@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { UtilService } from '../../services/util.service';
 import { Quiz } from "../../models/model";
 import { ShareQuizCompleteComponent } from "../share-quiz-complete/share-quiz-complete.component";
@@ -19,7 +19,7 @@ export class ShareQuizComponent implements OnInit {
   @ViewChild("title") title: ElementRef;
   @ViewChild(ShareQuizCompleteComponent) shareQuizCompleteComponent: ShareQuizCompleteComponent;
 
-  constructor(private util: UtilService) {
+  constructor(private util: UtilService, private chRef: ChangeDetectorRef) {
     this.quizzes = [];
   }
 
@@ -32,6 +32,8 @@ export class ShareQuizComponent implements OnInit {
       return;
 
     this.quizzes = quizzes;
+
+    this.chRef.detectChanges();
 
     (<JQueryX>$(`#${this.id}`)).modal({
       onApprove: () => this.shareQuiz()
