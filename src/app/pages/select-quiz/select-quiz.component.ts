@@ -33,7 +33,7 @@ interface JQueryX extends JQuery {
           transform: 'rotate(0deg)',
         })),
         state("expand", style({
-          transform: 'rotate(-90deg)',
+          transform: 'rotate(-45deg)',
         })),
         transition('inexpand => expand', [animate('200ms ease-in')]),
         transition('expand => inexpand', [animate('200ms ease-out')]),

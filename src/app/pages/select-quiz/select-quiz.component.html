@@ -46,16 +46,16 @@
 <div id="postcontent"></div>
 <div id="bottom_button">
   <div>
-    <button [@expandBottomButton]="expandBottomButton" (click)="toggleBottomButtons()" class="circular ui icon button toggle">
+    <button [@expandBottomButton]="expandBottomButton" (click)="toggleBottomButtons()" class="circular ui icon button toggle aqua-back">
         <i class="icon toggle"></i>
       </button>
-    <button [@expandBottomButton-addQuiz]="expandBottomButton" (click)="modalAddQuiz()" class="circular ui icon button">
+    <button [@expandBottomButton-addQuiz]="expandBottomButton" (click)="modalAddQuiz()" class="circular ui icon button aqua-back">
       <i class="icon add-quiz"></i>
       </button>
-    <button [@expandBottomButton-delQuiz]="expandBottomButton" (click)="modalDelQuiz()" class="circular ui icon button">
+    <button *ngIf="countOfCheckedQuiz != 0" [@expandBottomButton-delQuiz]="expandBottomButton" (click)="modalDelQuiz()" class="circular ui icon button grey-back">
         <i class="icon del-quiz"></i>
       </button>
-    <button *ngIf="countOfCheckedQuiz != 0" [@expandBottomButton-shareQuiz]="expandBottomButton" (click)="modalShareQuiz()" class="circular ui icon button">
+    <button *ngIf="countOfCheckedQuiz != 0" [@expandBottomButton-shareQuiz]="expandBottomButton" (click)="modalShareQuiz()" class="circular ui icon button grey-back">
         <i class="icon share-quiz"></i>
       </button>
   </div>

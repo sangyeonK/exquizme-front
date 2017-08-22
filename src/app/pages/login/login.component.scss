@@ -8,6 +8,8 @@
     color: #1c2b58;
   }
   img {
+    width: 299px;
+    height: 202px;
     margin: auto;
   }
   button.facebook {
@@ -16,5 +18,7 @@
     height: 48px;
     border-radius: 59px;
     box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+    font-family: "SpoqaHanSans";
+    font-weight: bold;
   }
 }
