@@ -1,6 +1,6 @@
 // global scss content
-$aqua-marine: #1de9b6;
-$aqua: #1dc5e9;
+@import './variables';
+
 html {
   background-color: gray;
   height: 100%;
