@@ -17,12 +17,17 @@ import { DelQuizComponent } from './popups/del-quiz/del-quiz.component';
 import { ShareQuizComponent } from './popups/share-quiz/share-quiz.component';
 import { TagQuiztypeComponent } from './parts/tag-quiztype/tag-quiztype.component';
 import { ShareQuizCompleteComponent } from './popups/share-quiz-complete/share-quiz-complete.component';
+import { SolveQuizComponent } from './pages/solve-quiz/solve-quiz.component';
+import { RankingComponent } from './pages/ranking/ranking.component';
+import { SubmitResultComponent } from './popups/submit-result/submit-result.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'select_quiz', component: SelectQuizComponent },
+  { path: 'solve_quiz', component: SolveQuizComponent },
+  { path: 'ranking', component: RankingComponent },
 ];
 
 @NgModule({
@@ -37,7 +42,10 @@ const routes: Routes = [
     DelQuizComponent,
     ShareQuizComponent,
     TagQuiztypeComponent,
-    ShareQuizCompleteComponent
+    ShareQuizCompleteComponent,
+    SolveQuizComponent,
+    RankingComponent,
+    SubmitResultComponent
   ],
   imports: [
     BrowserModule,

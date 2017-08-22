@@ -7,6 +7,10 @@
   <br/>
   <button class="ui black button" [routerLink]="['/select_quiz']">퀴즈선택 페이지</button>
   <br/>
+  <button class="ui black button" [routerLink]="['/solve_quiz']">퀴즈풀이 페이지</button>
+  <br/>
+  <button class="ui black button" [routerLink]="['/ranking']">랭킹 페이지</button>
+  <br/>
   <button class="ui black button" (click)="modalAddQuiz()">퀴즈 생성 팝업 띄우기</button>
   <popup-add-quiz></popup-add-quiz>
   <br/>
@@ -15,5 +19,8 @@
   <br/>
   <button class="ui black button" (click)="modalShareQuiz()">퀴즈 공유 팝업 띄우기</button>
   <popup-share-quiz></popup-share-quiz>
+  <br/>
+  <button class="ui black button" (click)="modalSubmitResult()">결과 전송 팝업 띄우기</button>
+  <popup-submit-result></popup-submit-result>
   <br/>
 </div>
