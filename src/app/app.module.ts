@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoggerModule } from 'ngx-logger';
 
 import { UtilService } from './services/util.service';
+import { QuizSetService } from './services/quiz-set.service';
 
 import { AppComponent } from './app.component';
 import { TopMenuComponent } from './parts/top-menu/top-menu.component';
@@ -20,12 +21,14 @@ import { ShareQuizCompleteComponent } from './popups/share-quiz-complete/share-q
 import { SolveQuizComponent } from './pages/solve-quiz/solve-quiz.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
 import { SubmitResultComponent } from './popups/submit-result/submit-result.component';
+import { StartSolveQuizComponent } from './pages/start-solve-quiz/start-solve-quiz.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'select_quiz', component: SelectQuizComponent },
+  { path: 'start_solve_quiz', component: StartSolveQuizComponent },
   { path: 'solve_quiz', component: SolveQuizComponent },
   { path: 'ranking', component: RankingComponent },
 ];
@@ -45,7 +48,8 @@ const routes: Routes = [
     ShareQuizCompleteComponent,
     SolveQuizComponent,
     RankingComponent,
-    SubmitResultComponent
+    SubmitResultComponent,
+    StartSolveQuizComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,10 @@ const routes: Routes = [
     BrowserAnimationsModule,
     LoggerModule.forRoot({ level: "DEBUG" })
   ],
-  providers: [UtilService],
+  providers: [
+    UtilService,
+    QuizSetService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
