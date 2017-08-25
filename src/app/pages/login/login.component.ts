@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private location: Location, private http: HttpClient) { }
 
   ngOnInit() {
+  }
+
+  gotoFacebookLogin() {
+    window.location.href = "/api/login";
   }
 
 }

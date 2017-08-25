@@ -21,6 +21,7 @@ export class SolveQuizComponent implements OnInit {
   isCorrect: boolean;
 
   //결과
+  showResult:boolean;
   playtime: number;
   correctCount: number;
   wrongCount: number;
@@ -50,11 +51,12 @@ export class SolveQuizComponent implements OnInit {
     if (!this.quizzes || this.quizzes.length == 0)
       this.gotoHomePage();
 
+    this.showResult = true;
     this.currentQuiz = this.quizzes[0];
   }
 
   gotoHomePage() {
-    this.router.navigate(['home']);
+    this.router.navigate(['']);
   }
 
   choiceAnswer(number: number) {

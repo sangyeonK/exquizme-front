@@ -1,41 +1,62 @@
 <top-menu></top-menu>
 <div id="precontent"></div>
 <div id="content">
-  <div class="quiz box">
-    <div class="upper">
-      <span class="current">{{index+1}}</span> &nbsp;&nbsp;
-      <span class="all">of {{quizzes?.length}}</span>
-      <tag-quiztype [quiz-type]="currentQuiz?.type"></tag-quiztype>
+  <div id="solve-quiz" *ngIf="!showResult">
+
+    <div class="quiz box">
+      <div class="upper">
+        <span class="current">{{index+1}}</span> &nbsp;&nbsp;
+        <span class="all">of {{quizzes?.length}}</span>
+        <tag-quiztype [quiz-type]="currentQuiz?.type"></tag-quiztype>
+      </div>
+      <div class="bottom">
+        <div class="title">{{currentQuiz?.title}}</div>
+      </div>
+      <svg *ngIf="clearQuiz && isCorrect" width="100%" height="100%" class="correct">
+        <defs>
+          <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#1dc5e9;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#1de9b6;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <circle cx="50%" cy="50%" r="100" stroke="url(#grad1)" />
+      </svg>
+      <svg *ngIf="clearQuiz && !isCorrect" width="100%" height="100%" class="wrong">
+        <defs>
+          <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#e53da3;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#e53d59;stop-opacity:1" />
+          </linearGradient>
+        </defs>
+        <line x1="40%" y1="20%" x2="60%" y2="80%" stroke="url(#grad2)" />
+        <line x1="40%" y1="80%" x2="60%" y2="20%" stroke="url(#grad2)" />
+      </svg>
     </div>
-    <div class="bottom">
-      <div class="title">{{currentQuiz?.title}}</div>
+    <div *ngIf="currentQuiz?.type == eQuizType.CHOICE_QUIZ" class="answer table">
+      <div class="row">
+        <div (click)="choiceAnswer(0)" [class.correct]="choiceNumber==0" [class.wrong]="chooseNumber==0" class="column">{{currentQuiz?.answerList[0]}}</div>
+        <div (click)="choiceAnswer(1)" [class.correct]="choiceNumber==1" [class.wrong]="chooseNumber==1" class="column">{{currentQuiz?.answerList[1]}}</div>
+      </div>
+      <div class="row">
+        <div (click)="choiceAnswer(2)" [class.correct]="choiceNumber==2" [class.wrong]="chooseNumber==2" class="column">{{currentQuiz?.answerList[2]}}</div>
+        <div (click)="choiceAnswer(3)" [class.correct]="choiceNumber==3" [class.wrong]="chooseNumber==3" class="column">{{currentQuiz?.answerList[3]}}</div>
+      </div>
     </div>
-    <svg *ngIf="clearQuiz && isCorrect" width="100%" height="100%" class="correct">
-      <defs>
-        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style="stop-color:#1dc5e9;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#1de9b6;stop-opacity:1" />
-        </linearGradient>
-      </defs>
-      <circle cx="50%" cy="50%" r="100" stroke="url(#grad1)" />
-    </svg>
-    <div class="wrong"></div>
+    <div *ngIf="currentQuiz?.type == eQuizType.SENTENCE_QUIZ" class="answer table">
+      <div class="ui form">
+        <input type="text" #sentenceQuizAnswer [disabled]="clearQuiz" style="width:100%" placeholder="정답을 입력해주세요.">
+      </div>
+    </div>
+    <button *ngIf="!clearQuiz" [disabled]="currentQuiz?.type == eQuizType.CHOICE_QUIZ && choiceNumber == undefined" [class.disabled]="currentQuiz?.type == eQuizType.CHOICE_QUIZ && choiceNumber == undefined"
+      (click)="submit()">제출</button>
+    <button *ngIf="clearQuiz" (click)="nextQuiz()">다음문제</button>
+
   </div>
-  <div *ngIf="currentQuiz?.type == eQuizType.CHOICE_QUIZ" class="answer table">
-    <div class="row">
-      <div (click)="choiceAnswer(0)" [class.correct]="choiceNumber==0" [class.wrong]="chooseNumber==0" class="column">{{currentQuiz?.answerList[0]}}</div>
-      <div (click)="choiceAnswer(1)" [class.correct]="choiceNumber==1" [class.wrong]="chooseNumber==1" class="column">{{currentQuiz?.answerList[1]}}</div>
-    </div>
-    <div class="row">
-      <div (click)="choiceAnswer(2)" [class.correct]="choiceNumber==2" [class.wrong]="chooseNumber==2" class="column">{{currentQuiz?.answerList[2]}}</div>
-      <div (click)="choiceAnswer(3)" [class.correct]="choiceNumber==3" [class.wrong]="chooseNumber==3" class="column">{{currentQuiz?.answerList[3]}}</div>
-    </div>
+
+  <div id="solve-quiz-result" *ngIf="showResult">
+    <img src="/assets/character_3.png">
+    <button class="submit">결과제출</button>
+    <button class="main">메인으로</button>
+
   </div>
-  <div *ngIf="currentQuiz?.type == eQuizType.SENTENCE_QUIZ" class="answer table">
-    <div class="ui form">
-      <input type="text" #sentenceQuizAnswer style="width:100%" placeholder="정답을 입력해주세요.">
-    </div>
-  </div>
-  <button *ngIf="!clearQuiz" [disabled]="choiceNumber == undefined" [class.disabled]="choiceNumber == undefined" (click)="submit()">제출</button>
-  <button *ngIf="clearQuiz" (click)="nextQuiz()">다음문제</button>
 </div>

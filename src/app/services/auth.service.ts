@@ -1,5 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-
+import { Subscription } from 'rxjs/Subscription';
 @Injectable()
 export class AuthService {
 
@@ -9,24 +9,20 @@ export class AuthService {
   pictureURL: string;
   name: string;
 
-  event: EventEmitter<Boolean>;
+  event: EventEmitter<AuthService>;
 
   constructor() {
-    this.event = new EventEmitter<Boolean>();
+    this.event = new EventEmitter<AuthService>();
     this.userID = undefined;
     this.pictureURL = undefined;
     this.name = undefined;
-
-    this.event.asObservable().subscribe(() => {
-
-    });
-
   }
 
   emitEvent() {
-    this.event.emit(true);
+    this.event.emit(this);
   }
 
-
-
+  subscribe(func: (auth:AuthService) => void ) {
+    return this.event.asObservable().subscribe(func);
+  }
 }
