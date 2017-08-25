@@ -13,7 +13,6 @@ export class TopMenuComponent implements OnInit, OnDestroy {
   sub: Subscription
 
   constructor(private auth: AuthService) {
-
   }
 
   ngOnInit() {

@@ -12,6 +12,11 @@
   z-index: 1;
   >#menu {
     min-height: 48px;
+    .name {
+      font-size: 12px;
+      font-weight: 900;
+      font-family: 'NotoSansCJKkr';
+    }
     >#logo {
       width: 64px;
       height: 18px;
