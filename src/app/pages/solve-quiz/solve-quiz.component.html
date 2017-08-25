@@ -54,6 +54,9 @@
   </div>
 
   <div id="solve-quiz-result" *ngIf="showResult">
+    <div class="result box">
+      <span class="current">{{correctCount}}</span> <span class="all">&nbsp;/ {{quizzes?.length}}</span>
+    </div>
     <img src="/assets/character_3.png">
     <button class="submit">결과제출</button>
     <button class="main">메인으로</button>

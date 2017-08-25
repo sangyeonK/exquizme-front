@@ -113,6 +113,35 @@
 }
 
 #solve-quiz-result {
+  .result.box {
+    width: 100%;
+    min-height: 250px;
+    background-image: url("/assets/result_background.svg");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
+    span.current {
+      background-image: -webkit-linear-gradient(left, $aqua-marine, $aqua);
+      background-image: -moz-linear-gradient(left, $aqua-marine, $aqua);
+      background-image: -ms-linear-gradient(left, $aqua-marine, $aqua);
+      background-image: -o-linear-gradient(left, $aqua-marine, $aqua);
+      background-image: linear-gradient(to right, $aqua-marine, $aqua);
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      font-family: "SpoqaHanSans";
+      font-size: 79px;
+      font-weight: bold;
+      line-height: 1.2em;
+    }
+    span.all {
+      font-family: "SpoqaHanSans";
+      font-size: 45px;
+      font-weight: bold;
+      color: #8b8b8b;
+      text-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    }
+  }
   img {
     width: 358px;
     height: 250px;

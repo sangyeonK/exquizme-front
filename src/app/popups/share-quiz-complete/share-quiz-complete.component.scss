@@ -1,6 +1,5 @@
 @import '../../../variables';
-
-div {
+div.ui.modal {
   //min-height: 500px;
   text-align: center;
   #popup-text {
@@ -45,9 +44,19 @@ div {
     text-align: center;
     color: #9e9e9e;
   }
+  img {
+    margin: auto;
+    width: 239px;
+    height: 182px;
+  }
   #actions {
     text-align: center;
     background-color: white;
     border-top: 0;
+    margin-bottom: 10px;
+    button {
+      width: 95%;
+      height: 48px;
+    }
   }
 }

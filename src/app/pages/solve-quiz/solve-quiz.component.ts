@@ -41,7 +41,7 @@ export class SolveQuizComponent implements OnInit {
     let quiz: Quiz = new Quiz(0, "웹퀴즈 팀의 팀명은?\n가나다라마바사아자차카타파하\n하헤이후에호?");
     quiz.answerList = util.shuffle(['익스퀴즈미', '퀴즈인고양', '티키타카', '문제적사람']);
     quiz.correctAnswer = "익스퀴즈미";
-    quiz.type = 1;
+    quiz.type = 0;
 
     this.quizzes.push(quiz);
     this.quizzes.push(quiz);
@@ -51,7 +51,7 @@ export class SolveQuizComponent implements OnInit {
     if (!this.quizzes || this.quizzes.length == 0)
       this.gotoHomePage();
 
-    this.showResult = true;
+    this.showResult = false;
     this.currentQuiz = this.quizzes[0];
   }
 
@@ -91,7 +91,7 @@ export class SolveQuizComponent implements OnInit {
   nextQuiz() {
 
     if (this.quizzes.length <= this.index + 1) {
-      console.log("마지막 문제였음! 결과 이동!!");
+      this.showResult = true;
       return;
     }
 
