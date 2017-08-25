@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { UtilService } from '../../services/util.service';
 import { Quiz } from "../../models/model";
 import { ShareQuizCompleteComponent } from "../share-quiz-complete/share-quiz-complete.component";
@@ -19,7 +20,7 @@ export class ShareQuizComponent implements OnInit {
   @ViewChild("title") title: ElementRef;
   @ViewChild(ShareQuizCompleteComponent) shareQuizCompleteComponent: ShareQuizCompleteComponent;
 
-  constructor(private util: UtilService, private chRef: ChangeDetectorRef) {
+  constructor(private util: UtilService, private chRef: ChangeDetectorRef, private http: HttpClient) {
     this.quizzes = [];
   }
 
@@ -42,7 +43,26 @@ export class ShareQuizComponent implements OnInit {
   }
 
   shareQuiz() {
-    const title = this.title.nativeElement as HTMLInputElement;
-    this.shareQuizCompleteComponent.open(title.value);
+    let quiz_ids: Array<number> = [];
+
+    this.quizzes.forEach(q => {
+      quiz_ids.push(q.id);
+    });
+    const body = {
+      title: (this.title.nativeElement as HTMLInputElement).value,
+      quiz_ids: quiz_ids
+    }
+
+    this.http.post("/api/quiz/groups", body)
+      .subscribe(data => {
+        console.log(data);
+        this.shareQuizCompleteComponent.open(body.title);
+
+      },
+      error => {
+        console.log(error);
+
+      });
+
   }
 }

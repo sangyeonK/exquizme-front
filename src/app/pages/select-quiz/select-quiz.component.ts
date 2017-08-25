@@ -1,6 +1,7 @@
 /// <reference types="jquery"/>
 import { Component, Directive, OnInit, ViewChild, ViewChildren, ElementRef, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 import { NGXLogger } from 'ngx-logger';
 
 import { Quiz, QuizType } from '../../models/model';
@@ -88,12 +89,24 @@ export class SelectQuizComponent implements OnInit {
   @ViewChild(DelQuizComponent) delQuizComponent: DelQuizComponent;
   @ViewChild(ShareQuizComponent) shareQuizComponent: ShareQuizComponent;
 
-  constructor(private logger: NGXLogger) {
+  constructor(private logger: NGXLogger, private http: HttpClient) {
     this.quizzes = [];
     this.countOfCheckedQuiz = this.quizzes.length;
   }
 
   ngOnInit() {
+    this.http.get("/api/quizzes")
+      .subscribe(data => {
+        console.log(data);
+        data["data"].forEach(e => {
+          let quiz = new Quiz(e["id"], e["text"]);
+          quiz.type = e["quiz_type"];
+          this.quizzes.push(quiz);
+        });
+      },
+      error => {
+        console.log(error);
+      });
 
   }
 
@@ -106,14 +119,25 @@ export class SelectQuizComponent implements OnInit {
   }
 
   delQuiz(event: Event, index: number) {
-    this.quizzes = this.quizzes.filter((quiz: Quiz, index2) => {
-      if (index == index2) {
-        if (quiz.checked)
-          this.countOfCheckedQuiz--;
-        return false;
-      }
-      return true;
-    });
+    let quiz: Quiz = this.quizzes[index];
+    this.http.delete(`/api/quizzes/${quiz.id}`)
+      .subscribe(data => {
+        console.log(data);
+        this.quizzes = this.quizzes.filter((quiz: Quiz, index2) => {
+          if (index == index2) {
+            if (quiz.checked)
+              this.countOfCheckedQuiz--;
+            return false;
+          }
+          return true;
+        });
+
+      }, error => {
+        console.log(error);
+
+      });
+
+
   }
   shareQuiz(title: string) {
 
@@ -146,6 +170,13 @@ export class SelectQuizComponent implements OnInit {
 
   expandQuiz(quiz: Quiz) {
     quiz.expandShowAnswer = !quiz.expandShowAnswer;
+    this.http.get(`/api/quizzes/${quiz.id}`)
+      .subscribe(data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      });
   }
 
   stopPropagation(event: Event) {

@@ -1,5 +1,6 @@
 /// <reference types="jquery"/>
 import { Component, OnInit, Input, Output, ViewChild, ViewChildren, EventEmitter, ElementRef, QueryList, ChangeDetectorRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { UtilService } from '../../services/util.service';
 import { Quiz, QuizType } from '../../models/model';
 
@@ -25,7 +26,7 @@ export class AddQuizComponent implements OnInit {
 
   @Output() ok: EventEmitter<object>;
 
-  constructor(private util: UtilService, private chRef:ChangeDetectorRef) {
+  constructor(private util: UtilService, private chRef: ChangeDetectorRef, private http: HttpClient) {
     this.ok = new EventEmitter<object>();
     this.quizType = QuizType.CHOICE_QUIZ;
   }
@@ -66,7 +67,22 @@ export class AddQuizComponent implements OnInit {
         }
         quiz.answerList.push(elQuizAnswer.value);
       })
-      this.ok.emit(quiz);
+
+      const body = {
+        text: quiz.title,
+        type: quiz.type,
+        options: quiz.answerList,
+        answerIdx: 0
+      };
+
+      this.http.post("/api/quizzes", body)
+        .subscribe(data => {
+          console.log(data);
+          this.ok.emit(quiz);
+        },
+        error => {
+          console.log(error);
+        });
     }
     else {
       const elQuizTitle = this.sentenceQuizTitle.nativeElement as HTMLTextAreaElement;
@@ -74,7 +90,22 @@ export class AddQuizComponent implements OnInit {
       quiz.type = this.quizType;
       const elQuizAnswer = this.sentenceQuizAnswer.nativeElement as HTMLTextAreaElement;
       quiz.correctAnswer = elQuizAnswer.value;
-      this.ok.emit(quiz);
+
+      const body = {
+        text: quiz.title,
+        type: quiz.type,
+        options: [quiz.correctAnswer],
+        answerIdx: 0
+      };
+
+      this.http.post("/api/quizzes", body)
+        .subscribe(data => {
+          console.log(data);
+          this.ok.emit(quiz);
+        },
+        error => {
+          console.log(error);
+        });
     }
   }
 
