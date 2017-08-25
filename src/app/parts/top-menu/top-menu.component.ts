@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router'
 import { Subscription } from 'rxjs/Subscription';
 import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'top-menu',
   templateUrl: './top-menu.component.html',
@@ -12,7 +14,7 @@ export class TopMenuComponent implements OnInit, OnDestroy {
   name: string;
   sub: Subscription
 
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -28,6 +30,10 @@ export class TopMenuComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  gotoHomePage() {
+    this.router.navigate(['']);
   }
 
 }
