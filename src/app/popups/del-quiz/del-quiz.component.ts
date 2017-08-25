@@ -34,19 +34,6 @@ export class DelQuizComponent implements OnInit {
   }
 
   delQuiz() {
-    const body = {
-      quiz_group_id: 2,
-      correct: 1,
-      wrong: 2,
-      time: 100,
-      nickname: "넥스터즈3"
-    }
-    this.http.post("/api/quiz/results", body)
-      .subscribe(data => {
-        console.log(data);
-      }, error => {
-        console.log(error);
-      })
     this.ok.emit();
   }
 }

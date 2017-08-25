@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { NGXLogger } from 'ngx-logger';
 
-import { Router } from '@angular/router';
 import { Quiz } from '../../models/model';
 import { QuizSetService } from '../../services/quiz-set.service';
+import { UtilService } from '../../services/util.service';
 
 @Component({
   selector: 'app-start-solve-quiz',
@@ -11,25 +14,45 @@ import { QuizSetService } from '../../services/quiz-set.service';
 })
 export class StartSolveQuizComponent implements OnInit {
 
-  constructor(private router: Router, private quizset: QuizSetService) {
+  title: string;
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient, private logger: NGXLogger, private util: UtilService, private quizset: QuizSetService) {
   }
 
   ngOnInit() {
+    this.quizset.set([]);
+
+    this.route.queryParams.subscribe(x => {
+      const quizsetId = x.quizset_id;
+      this.http.get(`/api/quiz/groups/${quizsetId}`)
+        .subscribe(data => {
+          let quizzes: Quiz[] = [];
+          this.title = data["data"]["title"];
+          data["data"]["quiz_list"].forEach(x => {
+            let correctAnswer: string;
+            const correctId = x.quiz_answer.quiz_option_id;
+            const answerList = x.quiz_option_list.map(x2 => {
+              if (x2.id == correctId)
+                correctAnswer = x2.text;
+              return x2.text;
+            });
+
+            const quiz: Quiz = new Quiz(x.id, x.text, x.quiz_type, correctAnswer, this.util.shuffle(answerList));
+            this.logger.debug(quiz);
+            quizzes.push(quiz);
+          });
+
+          this.quizset.set(quizzes);
+        },
+        error => {
+
+        });
+
+    });
   }
 
   gotoSolveQuizPage() {
-    let quizset: Quiz[] = [];
-    for (let i = 0; i < 10; i++) {
-      let quiz: Quiz = new Quiz(0, `${i + 1}번째 퀴즈`);
-      quiz.type = 0;
-      quiz.answerList = ["1", "2", "3", "4"];
-      quiz.correctAnswer = "1";
+    if (this.quizset.get().length != 0)
+      this.router.navigate(['solve_quiz']);
 
-      quizset.push(quiz);
-    }
-
-    this.quizset.set(quizset);
-    this.router.navigate(['solve_quiz']);
   }
-
 }

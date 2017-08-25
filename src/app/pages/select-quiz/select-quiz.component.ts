@@ -97,15 +97,14 @@ export class SelectQuizComponent implements OnInit {
   ngOnInit() {
     this.http.get("/api/quizzes")
       .subscribe(data => {
-        console.log(data);
+        this.logger.debug(data);
         data["data"].forEach(e => {
-          let quiz = new Quiz(e["id"], e["text"]);
-          quiz.type = e["quiz_type"];
+          let quiz = new Quiz(e["id"], e["text"], e["quiz_type"], undefined, []);
           this.quizzes.push(quiz);
         });
       },
       error => {
-        console.log(error);
+        this.logger.error(error);
       });
 
   }
@@ -115,14 +114,15 @@ export class SelectQuizComponent implements OnInit {
   }
 
   addQuiz(quiz) {
-    this.quizzes.push(quiz);
+    this.quizzes.unshift(quiz);
   }
 
   delQuiz(event: Event, index: number) {
+    this.stopPropagation(event);
+
     let quiz: Quiz = this.quizzes[index];
     this.http.delete(`/api/quizzes/${quiz.id}`)
       .subscribe(data => {
-        console.log(data);
         this.quizzes = this.quizzes.filter((quiz: Quiz, index2) => {
           if (index == index2) {
             if (quiz.checked)
@@ -133,7 +133,6 @@ export class SelectQuizComponent implements OnInit {
         });
 
       }, error => {
-        console.log(error);
 
       });
 
@@ -154,8 +153,23 @@ export class SelectQuizComponent implements OnInit {
   }
 
   delCheckedQuiz() {
-    this.countOfCheckedQuiz = 0;
-    this.quizzes = this.quizzes.filter((quiz: Quiz) => quiz.checked == false);
+    let remainCount = this.countOfCheckedQuiz;
+    this.quizzes.forEach(x => {
+      if (x.checked) {
+        this.http.delete(`/api/quizzes/${x.id}`)
+          .subscribe(data => {
+            remainCount--;
+            if (remainCount == 0) {
+              this.countOfCheckedQuiz = 0;
+              this.quizzes = this.quizzes.filter((quiz: Quiz) => quiz.checked == false);
+            }
+
+          },
+          error => {
+            this.logger.error(error);
+          });
+      }
+    });
   }
 
   checkQuiz(checked, quiz: Quiz, index: number) {
@@ -173,16 +187,14 @@ export class SelectQuizComponent implements OnInit {
     this.http.get(`/api/quizzes/${quiz.id}`)
       .subscribe(data => {
         const correctId = data["data"]["quiz_answer"]["quiz_option_id"];
-        quiz.answerList = data["data"]["quiz_option_list"].map( (x,index) => {
-          if(x.id == correctId)
+        quiz.answerList = data["data"]["quiz_option_list"].map((x, index) => {
+          if (x.id == correctId)
             quiz.correctAnswer = index;
           return x.text;
         });
-        console.log(quiz);
-        console.log(data);
       },
       error => {
-        console.log(error);
+        this.logger.error(error);
       });
   }
 

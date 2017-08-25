@@ -13,6 +13,7 @@ interface JQueryX extends JQuery {
 export class ShareQuizCompleteComponent implements OnInit {
 
   id: string;
+  url:string;
   title: string;
 
   @Output() ok: EventEmitter<string>;
@@ -23,8 +24,9 @@ export class ShareQuizCompleteComponent implements OnInit {
     this.id = `popup-share-quiz-complete_${this.util.randomString(5)}`;
   }
 
-  open(title:string) {
+  open(quizsetId:string, title:string) {
     this.title = title;
+    this.url = `http://exquiz.me/start_solve_quiz?quizset_id=${quizsetId}`;
 
     (<JQueryX>$(`#${this.id}`)).modal({
 

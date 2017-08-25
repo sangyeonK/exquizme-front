@@ -13,12 +13,14 @@ export class Quiz {
     answerList:string[];
     expandShowAnswer:boolean;
 
-    constructor(id: number, title: string) {
+    constructor(id: number, title: string, type:QuizType, correctAnswer:string, answerList:string[]) {
         this.checked = false;
+        this.expandShowAnswer = false;
 
         this.id = id;
         this.title = title;
-        this.answerList = [];
-        this.expandShowAnswer = false;
+        this.type = type;
+        this.correctAnswer = correctAnswer;
+        this.answerList = answerList;
     }
 }

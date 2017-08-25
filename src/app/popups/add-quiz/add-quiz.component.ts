@@ -56,57 +56,35 @@ export class AddQuizComponent implements OnInit {
 
   addQuiz() {
     if (this.quizType == QuizType.CHOICE_QUIZ) {
-      const elQuizTitle = this.choiceQuizTitle.nativeElement as HTMLTextAreaElement;
-      let quiz: Quiz = new Quiz(0, elQuizTitle.value);
-      quiz.type = this.quizType;
-      this.choiceQuizAnswer.forEach((item, index) => {
-        const elQuizAnswer = item.nativeElement as HTMLInputElement;
-        if (index == 0) {
-          //첫번째 요소가 정답
-          quiz.correctAnswer = elQuizAnswer.value;
-        }
-        quiz.answerList.push(elQuizAnswer.value);
-      })
-
       const body = {
-        text: quiz.title,
-        type: quiz.type,
-        options: quiz.answerList,
+        text: (this.choiceQuizTitle.nativeElement as HTMLTextAreaElement).value,
+        type: this.quizType,
+        options: this.choiceQuizAnswer.map(x => (x.nativeElement as HTMLInputElement).value),
         answerIdx: 0
       };
 
       this.http.post("/api/quizzes", body)
         .subscribe(data => {
-          console.log(data);
-          quiz.id = data["data"]["id"];
+          let quiz: Quiz = new Quiz(data["data"]["id"], body.text, body.type, body.options[body.answerIdx], body.options);
           this.ok.emit(quiz);
         },
         error => {
-          console.log(error);
         });
     }
     else {
-      const elQuizTitle = this.sentenceQuizTitle.nativeElement as HTMLTextAreaElement;
-      let quiz: Quiz = new Quiz(0, elQuizTitle.value);
-      quiz.type = this.quizType;
-      const elQuizAnswer = this.sentenceQuizAnswer.nativeElement as HTMLTextAreaElement;
-      quiz.correctAnswer = elQuizAnswer.value;
-
       const body = {
-        text: quiz.title,
-        type: quiz.type,
-        options: [quiz.correctAnswer],
+        text: (this.choiceQuizTitle.nativeElement as HTMLTextAreaElement).value,
+        type: this.quizType,
+        options: [(this.sentenceQuizAnswer.nativeElement as HTMLTextAreaElement).value],
         answerIdx: 0
       };
 
       this.http.post("/api/quizzes", body)
         .subscribe(data => {
-          console.log(data);
-          quiz.id = data["data"]["id"];
+          let quiz: Quiz = new Quiz(data["data"]["id"], body.text, body.type, body.options[body.answerIdx], body.options);
           this.ok.emit(quiz);
         },
         error => {
-          console.log(error);
         });
     }
   }

@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { LoggerModule } from 'ngx-logger';
 
+import { environment } from '../environments/environment';
 import { UtilService } from './services/util.service';
 import { QuizSetService } from './services/quiz-set.service';
 import { AuthService } from './services/auth.service';
@@ -57,7 +58,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    LoggerModule.forRoot({ level: "DEBUG" })
+    LoggerModule.forRoot({ level: environment.logLevel })
   ],
   providers: [
     UtilService,
