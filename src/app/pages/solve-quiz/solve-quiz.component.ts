@@ -12,6 +12,7 @@ import { UtilService } from '../../services/util.service';
 export class SolveQuizComponent implements OnInit {
   eQuizType = QuizType;
   index: number;
+  quizzes:Quiz[];
   currentQuiz: Quiz;
 
   choiceNumber: number;
@@ -26,32 +27,30 @@ export class SolveQuizComponent implements OnInit {
 
   @ViewChild("sentenceQuizAnswer") sentenceQuizAnswer: ElementRef;
 
-  constructor(private router: Router, private quizset: QuizSetService, private util: UtilService) {
+  constructor(private router: Router, private quizsets: QuizSetService, private util: UtilService) {
     this.index = 0;
 
     this.playtime = 0;
     this.correctCount = 0;
     this.wrongCount = 0;
 
-    let quizzes: Quiz[] = [];
+    //this.quizzes = quizsets.get();
+    this.quizzes = [];
 
     let quiz: Quiz = new Quiz(0, "웹퀴즈 팀의 팀명은?\n가나다라마바사아자차카타파하\n하헤이후에호?");
     quiz.answerList = util.shuffle(['익스퀴즈미', '퀴즈인고양', '티키타카', '문제적사람']);
     quiz.correctAnswer = "익스퀴즈미";
     quiz.type = 1;
 
-    quizzes.push(quiz);
-    quizzes.push(quiz);
-
-    this.quizset.set(quizzes);
-
+    this.quizzes.push(quiz);
+    this.quizzes.push(quiz);
   }
 
   ngOnInit() {
-    if (!this.quizset.get() || this.quizset.get().length == 0)
+    if (!this.quizzes || this.quizzes.length == 0)
       this.gotoHomePage();
 
-    this.currentQuiz = this.quizset.get()[0];
+    this.currentQuiz = this.quizzes[0];
   }
 
   gotoHomePage() {
@@ -89,14 +88,14 @@ export class SolveQuizComponent implements OnInit {
 
   nextQuiz() {
 
-    if (this.quizset.get().length <= this.index + 1) {
+    if (this.quizzes.length <= this.index + 1) {
       console.log("마지막 문제였음! 결과 이동!!");
       return;
     }
 
     this.index++;
 
-    this.currentQuiz = this.quizset.get()[this.index];
+    this.currentQuiz = this.quizzes[this.index];
 
     this.choiceNumber = undefined;
     this.chooseNumber = undefined;

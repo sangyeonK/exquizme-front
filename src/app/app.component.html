@@ -1,2 +1,2 @@
 <router-outlet></router-outlet>
-<app-minicon></app-minicon>
+<app-minicon *ngIf="!env.production" ></app-minicon>
