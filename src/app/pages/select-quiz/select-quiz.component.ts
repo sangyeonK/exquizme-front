@@ -172,6 +172,13 @@ export class SelectQuizComponent implements OnInit {
     quiz.expandShowAnswer = !quiz.expandShowAnswer;
     this.http.get(`/api/quizzes/${quiz.id}`)
       .subscribe(data => {
+        const correctId = data["data"]["quiz_answer"]["quiz_option_id"];
+        quiz.answerList = data["data"]["quiz_option_list"].map( (x,index) => {
+          if(x.id == correctId)
+            quiz.correctAnswer = index;
+          return x.text;
+        });
+        console.log(quiz);
         console.log(data);
       },
       error => {

@@ -78,6 +78,7 @@ export class AddQuizComponent implements OnInit {
       this.http.post("/api/quizzes", body)
         .subscribe(data => {
           console.log(data);
+          quiz.id = data["data"]["id"];
           this.ok.emit(quiz);
         },
         error => {
@@ -101,6 +102,7 @@ export class AddQuizComponent implements OnInit {
       this.http.post("/api/quizzes", body)
         .subscribe(data => {
           console.log(data);
+          quiz.id = data["data"]["id"];
           this.ok.emit(quiz);
         },
         error => {
