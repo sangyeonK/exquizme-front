@@ -1,5 +1,4 @@
 @import '../../../variables';
-
 div {
   //min-height: 500px;
   text-align: center;
@@ -43,5 +42,10 @@ div {
     text-align: center;
     background-color: white;
     border-top: 0;
+    button {
+      width: 95%;
+      max-width: 321px;
+      height: 48px;
+    }
   }
 }
