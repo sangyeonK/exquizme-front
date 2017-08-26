@@ -1,7 +1,22 @@
 <top-menu></top-menu>
 <div id="precontent"></div>
 <div id="content">
-  <p>
-    ranking works!
-  </p>
+  <p class="title">{{title}}</p>
+  <img class="title" src="/assets/character_4.png">
+  <br>
+  <table>
+    <colgroup>
+      <col width="10%">
+      <col width="60%">
+      <col width="15%">
+      <col width="15%">
+    </colgroup>
+    <tr *ngFor="let result of quizResults;index as i">
+      <td class="rank"><img *ngIf="i <= 2" src="{{getMedalResourceName(i)}}">{{ (2 < i) ? i + 1 : ""}}</td>
+      <td class="nickname">{{result.nickname}}</td>
+      <td class="score">{{result.correct + " / " + result.wrong}}</td>
+      <td class="time">{{getPlaytimeString(result.time)}}</td>
+    </tr>
+  </table>
+  <button (click)="gotoHomePage()">메인페이지로</button>
 </div>

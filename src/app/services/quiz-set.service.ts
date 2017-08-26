@@ -5,6 +5,7 @@ import { Quiz, QuizType } from '../models/model';
 @Injectable()
 export class QuizSetService {
 
+  id: number;
   private quizzes: Quiz[];
 
   constructor() { }

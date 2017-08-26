@@ -30,9 +30,9 @@ const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
   { path: 'select_quiz', component: SelectQuizComponent },
-  { path: 'start_solve_quiz', component: StartSolveQuizComponent },
+  { path: 'start_solve_quiz/:quizsetId', component: StartSolveQuizComponent },
   { path: 'solve_quiz', component: SolveQuizComponent },
-  { path: 'ranking', component: RankingComponent },
+  { path: 'ranking/:quizsetId', component: RankingComponent },
 ];
 
 @NgModule({

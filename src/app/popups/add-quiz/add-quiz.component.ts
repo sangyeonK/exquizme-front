@@ -65,7 +65,7 @@ export class AddQuizComponent implements OnInit {
 
       this.http.post("/api/quizzes", body)
         .subscribe(data => {
-          let quiz: Quiz = new Quiz(data["data"]["id"], body.text, body.type, body.options[body.answerIdx], body.options);
+          let quiz: Quiz = new Quiz(data["data"].id, body.text, body.type, body.options[body.answerIdx], body.options);
           this.ok.emit(quiz);
         },
         error => {
@@ -81,7 +81,7 @@ export class AddQuizComponent implements OnInit {
 
       this.http.post("/api/quizzes", body)
         .subscribe(data => {
-          let quiz: Quiz = new Quiz(data["data"]["id"], body.text, body.type, body.options[body.answerIdx], body.options);
+          let quiz: Quiz = new Quiz(data["data"].id, body.text, body.type, body.options[body.answerIdx], body.options);
           this.ok.emit(quiz);
         },
         error => {

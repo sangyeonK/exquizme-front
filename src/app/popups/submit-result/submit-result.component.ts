@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { UtilService } from '../../services/util.service';
 
 interface JQueryX extends JQuery {
@@ -14,18 +14,27 @@ export class SubmitResultComponent implements OnInit {
 
   id: string;
 
-  constructor(private util:UtilService) { }
+  @ViewChild("nickname") nickname: ElementRef;
+
+  @Output() ok: EventEmitter<string>;
+
+  constructor(private util: UtilService) {
+    this.ok = new EventEmitter<string>();
+  }
 
   ngOnInit() {
-    this.id = `popup-share-quiz-complete_${this.util.randomString(5)}`;
+    this.id = `popup-submit-result_${this.util.randomString(5)}`;
   }
 
   open() {
-    
     (<JQueryX>$(`#${this.id}`)).modal({
-
+      onApprove: () => this.submitResult()
     }).modal("show");
-
   }
+
+  submitResult() {
+    this.ok.emit((this.nickname.nativeElement as HTMLInputElement).value);
+  }
+
 
 }

@@ -1,0 +1,49 @@
+@import '../../../variables';
+div {
+  //min-height: 500px;
+  text-align: center;
+  #popup-text {
+    position: relative;
+    height: 24px;
+    font-family: "NotoSansCJKkr";
+    font-size: 16px;
+    font-weight: bold;
+    top: 8px;
+    margin-left: 8px;
+    color: #dedede;
+    text-align: left;
+  }
+  #paragraph1 {
+    font-family: "SpoqaHanSans";
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #9e9e9e;
+  }
+  div.field {
+    text-align: center;
+    >input{
+        width:95%;
+    }
+  }
+  #actions {
+    text-align: center;
+    background-color: white;
+    border-top: 0;
+    button {
+      margin-top: 42px;
+      width: 95%;
+      height: 48px;
+      border-radius: 5px;
+      font-family: "SpoqaHanSans";
+      font-size: 12px;
+      font-weight: bold;
+      text-align: center;
+      &.ok {
+        color: #ffffff;
+        background-image: linear-gradient(254deg, $aqua-marine, $aqua);
+        box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}

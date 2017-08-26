@@ -99,7 +99,7 @@ export class SelectQuizComponent implements OnInit {
       .subscribe(data => {
         this.logger.debug(data);
         data["data"].forEach(e => {
-          let quiz = new Quiz(e["id"], e["text"], e["quiz_type"], undefined, []);
+          let quiz = new Quiz(e.id, e.text, e.quiz_type, undefined, []);
           this.quizzes.push(quiz);
         });
       },
@@ -186,8 +186,8 @@ export class SelectQuizComponent implements OnInit {
     quiz.expandShowAnswer = !quiz.expandShowAnswer;
     this.http.get(`/api/quizzes/${quiz.id}`)
       .subscribe(data => {
-        const correctId = data["data"]["quiz_answer"]["quiz_option_id"];
-        quiz.answerList = data["data"]["quiz_option_list"].map((x, index) => {
+        const correctId = data["data"].quiz_answer.quiz_option_id;
+        quiz.answerList = data["data"].quiz_option_list.map((x, index) => {
           if (x.id == correctId)
             quiz.correctAnswer = index;
           return x.text;

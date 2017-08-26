@@ -116,10 +116,11 @@
   .result.box {
     width: 100%;
     min-height: 250px;
+    padding-top: 80px;
     background-image: url("/assets/result_background.svg");
     background-repeat: no-repeat;
-    background-size: 50%;
-    background-position: center;
+    background-size: 100%;
+    background-position: center -100px;
     span.current {
       background-image: -webkit-linear-gradient(left, $aqua-marine, $aqua);
       background-image: -moz-linear-gradient(left, $aqua-marine, $aqua);
@@ -140,6 +141,23 @@
       font-weight: bold;
       color: #8b8b8b;
       text-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    }
+    span.time {
+      font-family: "SpoqaHanSans";
+      font-size: 16px;
+      font-weight: bold;
+      color: #8b8b8b;
+      vertical-align: middle;
+    }
+    .icon.time {
+      display: inline-block;
+      width: 35px;
+      height: 35px;
+    }
+    span.comment {
+      font-family: "SpoqaHanSans";
+      font-size: 26px;
+      color: #434343;
     }
   }
   img {

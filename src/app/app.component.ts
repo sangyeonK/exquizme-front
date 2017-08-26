@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.http.get('api/user')
       .subscribe(data => {
-        this.auth.name = data["data"]["nickname"];
+        this.auth.name = data["data"].nickname;
         this.loadingComplete = true;
       },
       err => {

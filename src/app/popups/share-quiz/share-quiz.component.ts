@@ -58,7 +58,7 @@ export class ShareQuizComponent implements OnInit {
     this.http.post("/api/quiz/groups", body)
       .subscribe(data => {
         this.logger.debug(data);
-        this.shareQuizCompleteComponent.open(data["data"]["id"], data["data"]["title"]);
+        this.shareQuizCompleteComponent.open(data["data"].id, data["data"].title);
 
       },
       error => {

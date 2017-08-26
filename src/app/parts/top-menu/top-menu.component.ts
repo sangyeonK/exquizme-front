@@ -9,10 +9,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./top-menu.component.scss']
 })
 export class TopMenuComponent implements OnInit, OnDestroy {
+  private sub: Subscription;
 
   picture: string;
   name: string;
-  sub: Subscription
 
   constructor(private auth: AuthService, private router: Router) {
   }

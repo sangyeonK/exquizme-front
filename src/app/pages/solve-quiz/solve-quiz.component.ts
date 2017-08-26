@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { NGXLogger } from 'ngx-logger';
 
 import { Quiz, QuizType } from '../../models/model';
+import { UtilService } from '../../services/util.service';
 import { QuizSetService } from '../../services/quiz-set.service';
-
+import { SubmitResultComponent } from '../../popups/submit-result/submit-result.component';
 
 @Component({
   selector: 'app-solve-quiz',
@@ -22,6 +24,7 @@ export class SolveQuizComponent implements OnInit {
   clearQuiz: boolean;
   isCorrect: boolean;
 
+  startTime: number;
   //결과
   showResult: boolean;
   playtime: number;
@@ -29,15 +32,16 @@ export class SolveQuizComponent implements OnInit {
   wrongCount: number;
 
   @ViewChild("sentenceQuizAnswer") sentenceQuizAnswer: ElementRef;
+  @ViewChild(SubmitResultComponent) submitResultComponent: SubmitResultComponent;
 
-  constructor(private router: Router, private logger: NGXLogger, private quizsets: QuizSetService) {
+  constructor(private router: Router, private logger: NGXLogger, private quizset: QuizSetService, private util: UtilService, private http: HttpClient) {
     this.index = 0;
 
-    this.playtime = 0;
+    this.playtime = 30;
     this.correctCount = 0;
     this.wrongCount = 0;
 
-    this.quizzes = quizsets.get();
+    this.quizzes = quizset.get();
   }
 
   ngOnInit() {
@@ -46,6 +50,7 @@ export class SolveQuizComponent implements OnInit {
 
 
     this.showResult = false;
+    this.startTime = this.util.unixtime();
     this.currentQuiz = this.quizzes[0];
   }
 
@@ -86,6 +91,7 @@ export class SolveQuizComponent implements OnInit {
 
     if (this.quizzes.length <= this.index + 1) {
       this.showResult = true;
+      this.playtime = this.util.unixtime() - this.startTime;
       return;
     }
 
@@ -98,4 +104,41 @@ export class SolveQuizComponent implements OnInit {
     this.clearQuiz = false;
     this.isCorrect = false;
   }
+
+  getPlaytimeString() {
+    return `${Math.floor(this.playtime / 60)}분 ${this.playtime % 60}초`;
+  }
+
+  modalSubmitResult() {
+    this.submitResultComponent.open();
+  }
+
+  submitResult(nickname) {
+    this.logger.debug(nickname);
+    const body = {
+      quiz_group_id: this.quizset.id,
+      correct: this.correctCount,
+      wrong: this.wrongCount,
+      time: this.playtime,
+      nickname: nickname
+    };
+
+    this.http.post('/api/quiz/results', body)
+      .subscribe(data => {
+        this.logger.debug(data);
+        
+        this.gotoRankingPage();
+
+      },
+      error => {
+        this.logger.error(error);
+
+      });
+
+  }
+
+  gotoRankingPage() {
+    this.router.navigate(['/ranking', this.quizset.id]);
+  }
+
 }

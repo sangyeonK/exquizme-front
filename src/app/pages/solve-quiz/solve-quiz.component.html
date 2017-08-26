@@ -56,10 +56,20 @@
   <div id="solve-quiz-result" *ngIf="showResult">
     <div class="result box">
       <span class="current">{{correctCount}}</span> <span class="all">&nbsp;/ {{quizzes?.length}}</span>
+      <br>
+      <img class="icon time" src="/assets/icon_time.svg"><span class="time">&nbsp;{{getPlaytimeString()}}</span>
+      <br>
+      <br>
+      <br>
+      <span class="comment">참! 잘했어요</span>
+      <br>
+      <img src="/assets/character_3.png">
+
     </div>
-    <img src="/assets/character_3.png">
-    <button class="submit">결과제출</button>
-    <button class="main">메인으로</button>
+    <button (click)="modalSubmitResult()" class="submit">결과제출</button>
+    <button (click)="gotoHomePage()" class="main">메인으로</button>
 
   </div>
 </div>
+
+<popup-submit-result (ok)="submitResult($event)"></popup-submit-result>
