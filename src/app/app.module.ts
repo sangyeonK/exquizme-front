@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { LoggerModule } from 'ngx-logger';
+import { ClipboardModule } from 'ngx-clipboard';
 
 import { environment } from '../environments/environment';
 import { UtilService } from './services/util.service';
@@ -58,7 +59,8 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    LoggerModule.forRoot({ level: environment.logLevel })
+    LoggerModule.forRoot({ level: environment.logLevel }),
+    ClipboardModule
   ],
   providers: [
     UtilService,
