@@ -26,7 +26,7 @@ export class RankingComponent implements OnInit, OnDestroy {
     this.quizResults = [];
 
     this.sub = this.route.queryParams.subscribe(params => {
-      const quizsetId = params.quizeset_id;
+      const quizsetId = params.quizset_id;
       if (quizsetId) {
         this.http.get(`/api/quiz/groups/${quizsetId}`)
           .subscribe(data => {

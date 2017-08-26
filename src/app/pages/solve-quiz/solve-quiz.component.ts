@@ -126,7 +126,7 @@ export class SolveQuizComponent implements OnInit {
     this.http.post('/api/quiz/results', body)
       .subscribe(data => {
         this.logger.debug(data);
-        
+
         this.gotoRankingPage();
 
       },
@@ -138,7 +138,7 @@ export class SolveQuizComponent implements OnInit {
   }
 
   gotoRankingPage() {
-    this.router.navigate(['/ranking', this.quizset.id]);
+    this.router.navigate([`/ranking?quizset_id=${this.quizset.id}`]);
   }
 
 }
