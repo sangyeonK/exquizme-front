@@ -26,7 +26,7 @@ export class ShareQuizCompleteComponent implements OnInit {
 
   open(quizsetId:string, title:string) {
     this.title = title;
-    this.url = `http://exquiz.me/start_solve_quiz/${quizsetId}`;
+    this.url = `http://exquiz.me/start_solve_quiz?quizeset_id=${quizsetId}`;
 
     (<JQueryX>$(`#${this.id}`)).modal({
 

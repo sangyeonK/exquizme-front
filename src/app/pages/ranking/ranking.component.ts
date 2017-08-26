@@ -25,8 +25,8 @@ export class RankingComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.quizResults = [];
 
-    this.sub = this.route.params.subscribe(params => {
-      const quizsetId = params.quizsetId;
+    this.sub = this.route.queryParams.subscribe(params => {
+      const quizsetId = params.quizeset_id;
       if (quizsetId) {
         this.http.get(`/api/quiz/groups/${quizsetId}`)
           .subscribe(data => {

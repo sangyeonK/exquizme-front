@@ -25,8 +25,8 @@ export class StartSolveQuizComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.quizset.set([]);
 
-    this.sub = this.route.params.subscribe(x => {
-      const quizsetId = x.quizsetId;
+    this.sub = this.route.queryParams.subscribe(x => {
+      const quizsetId = x.quizset_id;
       if (quizsetId) {
         this.http.get(`/api/quiz/groups/${quizsetId}`)
           .subscribe(data => {
