@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Subscription } from 'rxjs/subscription';
+import { Subscription } from 'rxjs/Rx';
 import { NGXLogger } from 'ngx-logger';
 
 import { Quiz } from '../../models/model';
