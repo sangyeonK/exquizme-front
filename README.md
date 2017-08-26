@@ -1,6 +1,6 @@
-# Exquiz
+# Exquiz ( http://exquiz.me )
 
-이 프로젝트는 [Angular CLI](https://github.com/angular/angular-cli) version 1.2.0 로 생성되었습니다.
+이 프로젝트는 [Angular CLI](https://github.com/angular/angular-cli) version 1.2.6 로 생성되었습니다.
 
 ## Development server
 
