@@ -138,7 +138,7 @@ export class SolveQuizComponent implements OnInit {
   }
 
   gotoRankingPage() {
-    this.router.navigate([`/ranking?quizset_id=${this.quizset.id}`]);
+    this.router.navigate([`/ranking`], { queryParams: { quizset_id: this.quizset.id }});
   }
 
 }

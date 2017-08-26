@@ -17,7 +17,7 @@
       <div class="ui checkbox">
         <input type="checkbox" name="example" (change)="checkQuiz($event.target.checked, quiz, i)" (click)="stopPropagation($event)">
         <label>
-          {{ quiz.title }}
+          {{ quiz.title.length > 30 ? quiz.title.substr(0,30) + "..." : quiz.title }}
         </label>
 
       </div>

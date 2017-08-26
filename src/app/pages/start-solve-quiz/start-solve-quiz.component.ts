@@ -44,7 +44,7 @@ export class StartSolveQuizComponent implements OnInit, OnDestroy {
                 return x2.text;
               });
 
-              const quiz: Quiz = new Quiz(x.id, x.text, x.quiz_type, correctAnswer, this.util.shuffle(answerList));
+              const quiz: Quiz = new Quiz(x.id, x.text, x.quiz_type, correctAnswer, this.util.shuffle(answerList.filter( x => x )));
               this.logger.debug(quiz);
               quizzes.push(quiz);
             });

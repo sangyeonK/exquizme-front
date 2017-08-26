@@ -1,6 +1,8 @@
 /// <reference types="jquery"/>
 import { Component, OnInit, Input, Output, ViewChild, ViewChildren, EventEmitter, ElementRef, QueryList, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NGXLogger } from 'ngx-logger';
+
 import { UtilService } from '../../services/util.service';
 import { Quiz, QuizType } from '../../models/model';
 
@@ -26,7 +28,7 @@ export class AddQuizComponent implements OnInit {
 
   @Output() ok: EventEmitter<object>;
 
-  constructor(private util: UtilService, private chRef: ChangeDetectorRef, private http: HttpClient) {
+  constructor(private util: UtilService, private chRef: ChangeDetectorRef, private http: HttpClient, private logger: NGXLogger) {
     this.ok = new EventEmitter<object>();
     this.quizType = QuizType.CHOICE_QUIZ;
   }
@@ -65,6 +67,7 @@ export class AddQuizComponent implements OnInit {
 
       this.http.post("/api/quizzes", body)
         .subscribe(data => {
+          this.logger.debug(data);
           let quiz: Quiz = new Quiz(data["data"].id, body.text, body.type, body.options[body.answerIdx], body.options);
           this.ok.emit(quiz);
         },
@@ -73,7 +76,7 @@ export class AddQuizComponent implements OnInit {
     }
     else {
       const body = {
-        text: (this.choiceQuizTitle.nativeElement as HTMLTextAreaElement).value,
+        text: (this.sentenceQuizTitle.nativeElement as HTMLTextAreaElement).value,
         type: this.quizType,
         options: [(this.sentenceQuizAnswer.nativeElement as HTMLTextAreaElement).value],
         answerIdx: 0
@@ -81,6 +84,7 @@ export class AddQuizComponent implements OnInit {
 
       this.http.post("/api/quizzes", body)
         .subscribe(data => {
+          this.logger.debug(data);
           let quiz: Quiz = new Quiz(data["data"].id, body.text, body.type, body.options[body.answerIdx], body.options);
           this.ok.emit(quiz);
         },

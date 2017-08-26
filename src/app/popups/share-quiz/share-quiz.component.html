@@ -7,7 +7,7 @@
     <div id="share-quiz-field" class="field">
       <input #title type="text" class="write-title" placeholder="퀴즈의 제목을 입력해주세요">
       <div class="ui raised segment" *ngFor="let quiz of quizzes;">
-        <label>{{ quiz.title }}</label>
+        <label>{{ quiz.title.length > 30 ? quiz.title.substr(0,30) + "..." : quiz.title}}</label>
         <tag-quiztype [quiz-type]="quiz.type"></tag-quiztype>
       </div>
     </div>
